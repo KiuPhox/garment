@@ -1,5 +1,4 @@
 import { useDraggable } from "@dnd-kit/core";
-import Image from "next/image";
 import React from "react";
 
 const TagClassDraggable = ({ tagClass }: TagClassDraggableProps) => {
