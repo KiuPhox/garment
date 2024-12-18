@@ -58,6 +58,25 @@ export const TagsProvider = ({ children }: any) => {
                 targetTagClass,
                 targetTagAreaId,
             )
+        } else if (
+            activeData.type === 'TagClassFromFilter' &&
+            overData.type === 'TagClassArea'
+        ) {
+            const sourceTagClass = (activeData as Dnd.TagClassFilterData)
+                .tagClass
+            const sourceTagAreaId = (activeData as Dnd.TagClassFilterData)
+                .tagAreaId
+            const targetTagAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
+            const targetTagClass = (overData as Dnd.TagClassAreaData).tagClass
+
+            if (!sourceTagClass || !targetTagClass) return
+
+            switchTagClassFilter(
+                sourceTagClass,
+                sourceTagAreaId,
+                targetTagClass,
+                targetTagAreaId,
+            )
         }
     }
 
@@ -136,4 +155,3 @@ export const TagsProvider = ({ children }: any) => {
 
 export default TagsContext
 export { TagsDispatchContext }
-
