@@ -2,9 +2,13 @@ import { useDroppable } from '@dnd-kit/core'
 import React from 'react'
 
 const TagClassAreaDroppable = ({ id }: TagClassAreaDroppableProps) => {
-    const { isOver, setNodeRef } = useDroppable({
+    const { setNodeRef } = useDroppable({
         id: `tag-class-area-droppable-${id}`,
-        data: { id },
+        data: {
+            tagAreaId: id,
+            tagClass: undefined,
+            type: 'TagClassArea',
+        } as Dnd.TagClassAreaData,
     })
 
     return (

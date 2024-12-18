@@ -16,14 +16,30 @@ const Explorer = () => {
     const handleDragEnd = (e: DragEndEvent) => {
         if (!e.over) return
 
-        if (e.active.data.current?.type === 'tagClassAreaSwitch') {
-            const { tagClass: sourceTagClass, tagAreaId: sourceTagAreaId } = e
-                .active.data.current as {
-                tagClass: TagClass
-                tagAreaId: number
-            }
-            const { tagClass: targetTagClass, tagAreaId: targetTagAreaId } = e
-                .over.data.current as { tagClass: TagClass; tagAreaId: number }
+        const activeData = e.active.data.current as Dnd.DragEndData
+        const overData = e.over.data.current as Dnd.DragEndData
+
+        if (
+            activeData.type === 'TagClassFromContainer' &&
+            overData.type === 'TagClassArea'
+        ) {
+            const tagClassId = (activeData as Dnd.TagClassData).tagClass.id
+            const filterTagClass = (overData as Dnd.TagClassAreaData).tagClass
+            if (filterTagClass) return
+
+            const filterId = (overData as Dnd.TagClassAreaData).tagAreaId
+            moveTagClassToFilter(tagClassId, filterId)
+        } else if (
+            activeData.type === 'TagClassArea' &&
+            overData.type === 'TagClassArea'
+        ) {
+            const sourceTagClass = (activeData as Dnd.TagClassAreaData).tagClass
+            const sourceTagAreaId = (activeData as Dnd.TagClassAreaData)
+                .tagAreaId
+            const targetTagClass = (overData as Dnd.TagClassAreaData).tagClass
+            const targetTagAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
+
+            if (!sourceTagClass || !targetTagClass) return
 
             switchTagClasses(
                 sourceTagClass,
@@ -31,15 +47,7 @@ const Explorer = () => {
                 targetTagClass,
                 targetTagAreaId,
             )
-
-            return
         }
-
-        const tagClass = e.active.data.current?.tagClass as TagClass
-        const filterId = e.over.data.current?.id as number
-        if (!tagClass || typeof filterId !== 'number') return
-
-        moveTagClassToFilter(tagClass.id, filterId)
     }
 
     const moveTagClassToFilter = (tagClassId: number, filterId: number) => {

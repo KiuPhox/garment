@@ -1,24 +1,22 @@
 namespace Dnd {
-    declare enum Type {
+    const DndTypes = {
         Container = 'container',
         TagClassFromContainer = 'tag-class-from-container',
         TagClassFromFilter = 'tag-class-from-filter',
         TagClassArea = 'tag-class-area',
     }
+    type DndType = keyof typeof DndTypes
 
-    declare type TagClassFromContainerData = {
-        type: Type
-        tagClass: TagClass
+    type DragEndData = {
+        type: DndType
     }
 
-    declare type TagClassFromFilterData = {
-        type: Type
+    type TagClassData = {
         tagClass: TagClass
-    }
+    } & DragEndData
 
-    declare type TagClassAreaData = {
-        type: Type
+    type TagClassAreaData = {
         tagAreaId: number
         tagClass?: TagClass
-    }
+    } & DragEndData
 }

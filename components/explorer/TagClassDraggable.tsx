@@ -4,7 +4,10 @@ import React from 'react'
 const TagClassDraggable = ({ tagClass }: TagClassDraggableProps) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
         id: `tag-class-${tagClass.id}`,
-        data: { tagClass },
+        data: {
+            tagClass,
+            type: 'TagClassFromContainer',
+        } as Dnd.TagClassData,
     })
 
     const style = transform

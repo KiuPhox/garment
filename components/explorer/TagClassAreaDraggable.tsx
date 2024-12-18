@@ -19,7 +19,7 @@ const TagClassAreaDraggable = ({
     } = useDraggable({
         id: `tag-class-area-draggable-${id}`,
         data: {
-            type: Dnd.Type.TagClassArea,
+            type: 'TagClassArea',
             tagAreaId: id,
             tagClass,
         } as Dnd.TagClassAreaData,
@@ -28,7 +28,7 @@ const TagClassAreaDraggable = ({
     const { setNodeRef: setDroppableNodeRef } = useDroppable({
         id: `tag-class-area-droppable-${id}`,
         data: {
-            type: Dnd.Type.TagClassArea,
+            type: 'TagClassArea',
             tagAreaId: id,
             tagClass,
         } as Dnd.TagClassAreaData,
