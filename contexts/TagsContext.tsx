@@ -77,6 +77,13 @@ export const TagsProvider = ({ children }: any) => {
                 targetTagClass,
                 targetTagAreaId,
             )
+        } else if (
+            activeData.type === 'TagClassFromFilter' &&
+            overData.type === 'TagClassContainer'
+        ) {
+            const tagClassId = (activeData as Dnd.TagClassFilterData).tagClass
+                .id
+            deleteTagClassFromFilter(tagClassId)
         }
     }
 
