@@ -4,16 +4,24 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import TagClassDraggable from './TagClassDraggable'
+import { useDroppable } from '@dnd-kit/core'
 
 const TagClassContainer = ({ tagClasses }: TagClassContainerProps) => {
-    const [expanded, setExpanded] = useState(false)
+    const [_expanded, setExpanded] = useState(false)
+
+    const { setNodeRef } = useDroppable({
+        id: 'tag-class-container-droppable',
+        data: {
+            type: 'TagClassContainer',
+        } as Dnd.DragEndData,
+    })
 
     const handleExpandClick = () => {
         setExpanded((prev) => !prev)
     }
 
     return (
-        <section className="flex flex-col gap-2">
+        <section ref={setNodeRef} className="flex flex-col gap-2">
             <div className="flex gap-2">
                 <h2 className="text-gray-600 font-medium">Tag class</h2>
                 <Image

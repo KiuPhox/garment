@@ -2,6 +2,7 @@ import { getAllTagsByTagClass, getTagClassById } from '@/lib/explorer'
 import { useDraggable, useDroppable } from '@dnd-kit/core'
 import Image from 'next/image'
 import React from 'react'
+import TagClassFilterDraggable from './TagClassFilterDraggable'
 
 const TagClassAreaDraggable = ({
     id,
@@ -67,17 +68,10 @@ const TagClassAreaDraggable = ({
                             {...attributes}
                         />
                     </div>
-                    <div className="flex justify-between bg-gray-200 px-3 py-2 rounded-md ">
-                        {tagClass.name}
-                        <Image
-                            className="cursor-pointer"
-                            src="/icons/cross.svg"
-                            alt=""
-                            width={12}
-                            height={12}
-                            onClick={onRemoveClicked}
-                        />
-                    </div>
+                    <TagClassFilterDraggable
+                        tagClass={tagClass}
+                        onRemoveClicked={onRemoveClicked}
+                    />
                 </div>
                 <div className="h-[1px] bg-gray-300"></div>
                 <div className="flex flex-col gap-2">

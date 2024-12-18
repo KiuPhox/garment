@@ -1,6 +1,6 @@
 namespace Dnd {
     const DndTypes = {
-        Container = 'container',
+        TagClassContainer = 'tag-class-container',
         TagClassFromContainer = 'tag-class-from-container',
         TagClassFromFilter = 'tag-class-from-filter',
         TagClassArea = 'tag-class-area',

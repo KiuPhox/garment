@@ -47,6 +47,12 @@ const Explorer = () => {
                 targetTagClass,
                 targetTagAreaId,
             )
+        } else if (
+            activeData.type === 'TagClassFromFilter' &&
+            overData.type === 'TagClassContainer'
+        ) {
+            const tagClassId = (activeData as Dnd.TagClassData).tagClass.id
+            removeTagClassFromFilter(tagClassId)
         }
     }
 

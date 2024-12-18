@@ -8,7 +8,7 @@ const TagClassArea = ({
     onRemoveTagClass,
 }: TagClassAreaProps) => {
     return (
-        <div className="flex-1 ">
+        <div className="flex-1 max-w-80">
             {tagClassId ? (
                 <TagClassAreaDraggable
                     id={id}
