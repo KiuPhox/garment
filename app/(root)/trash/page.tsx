@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Trash = () => {
-  return <section className="home">Trash</section>;
-};
+    return <section className="home">Trash</section>
+}
 
-export default Trash;
+export default Trash

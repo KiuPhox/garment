@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Favorites = () => {
-  return <section className="home">Favorites</section>;
-};
+    return <section className="home">Favorites</section>
+}
 
-export default Favorites;
+export default Favorites

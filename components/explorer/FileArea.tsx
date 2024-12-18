@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const FileArea = () => {
-  return <div>FileArea</div>;
-};
+    return <div>FileArea</div>
+}
 
-export default FileArea;
+export default FileArea

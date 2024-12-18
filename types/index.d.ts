@@ -1,11 +1,11 @@
 declare type SidebarProps = {
-  user: User;
-};
+    user: User
+}
 
 declare type User = {
-  $id: string;
-  userId: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-};
+    $id: string
+    userId: string
+    firstName: string
+    lastName: string
+    email: string
+}

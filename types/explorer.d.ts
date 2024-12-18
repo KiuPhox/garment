@@ -1,45 +1,45 @@
 declare type TagClass = {
-  id: number;
-  name: string;
-};
+    id: number
+    name: string
+}
 
 declare type Tag = {
-  id: number;
-  tagClassId: number;
-  name: string;
-};
+    id: number
+    tagClassId: number
+    name: string
+}
 
 declare type ExplorerFile = {
-  id: number;
-  name: string;
-  tags: number[];
-};
+    id: number
+    name: string
+    tags: number[]
+}
 
 declare type TagClassContainerProps = {
-  tagClasses: TagClass[];
-};
+    tagClasses: TagClass[]
+}
 
 declare type TagClassAreaProps = {
-  id: number;
-  tagClassId?: number;
-  onRemoveTagClass: (tagClassId: number) => void;
-};
+    id: number
+    tagClassId?: number
+    onRemoveTagClass: (tagClassId: number) => void
+}
 
 declare type TagClassAreaDraggableProps = {
-  id: number;
-  tagClassId: number;
-  onRemoveTagClass: (tagClassId: number) => void;
-};
+    id: number
+    tagClassId: number
+    onRemoveTagClass: (tagClassId: number) => void
+}
 
 declare type TagClassDraggableProps = {
-  tagClass: TagClass;
-};
+    tagClass: TagClass
+}
 
 declare type TagClassAreaDroppableProps = {
-  id: number;
-};
+    id: number
+}
 
 declare type FilterAreaProps = {
-  tagClasses: (TagClass | undefined)[];
-  onRemoveTagClass: (tagClassId: number) => void;
-};
+    tagClasses: (TagClass | undefined)[]
+    onRemoveTagClass: (tagClassId: number) => void
+}
