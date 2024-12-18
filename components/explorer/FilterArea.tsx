@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import TagClassArea from './TagClassArea'
 import FileArea from './FileArea'
+import TagsContext from '@/contexts/TagsContext'
 
-const FilterArea = ({ tagClasses, onRemoveTagClass }: FilterAreaProps) => {
+const FilterArea = () => {
+    const { filterTagClasses: tagClasses } = useContext(TagsContext)
+
     const notEmptyTagClasses = tagClasses.filter((tagClass) => tagClass)
     return (
         <section className="flex flex-col gap-2 h-full">
@@ -14,7 +17,6 @@ const FilterArea = ({ tagClasses, onRemoveTagClass }: FilterAreaProps) => {
                             key={index}
                             id={index}
                             tagClassId={tagClass?.id}
-                            onRemoveTagClass={onRemoveTagClass}
                         />
                     )
                 })}
@@ -22,7 +24,6 @@ const FilterArea = ({ tagClasses, onRemoveTagClass }: FilterAreaProps) => {
                     <TagClassArea
                         id={notEmptyTagClasses.length}
                         tagClassId={tagClasses[notEmptyTagClasses.length]?.id}
-                        onRemoveTagClass={onRemoveTagClass}
                     />
                 )}
 

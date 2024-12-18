@@ -1,13 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import TagClassDraggable from './TagClassDraggable'
 import { useDroppable } from '@dnd-kit/core'
+import type { Dnd } from '@/types/dnd'
+import TagsContext from '@/contexts/TagsContext'
 
-const TagClassContainer = ({ tagClasses }: TagClassContainerProps) => {
+const TagClassContainer = () => {
     const [_expanded, setExpanded] = useState(false)
+    const { tagClasses } = useContext(TagsContext)
 
     const { setNodeRef } = useDroppable({
         id: 'tag-class-container-droppable',

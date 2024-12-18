@@ -2,141 +2,32 @@
 
 import FilterArea from '@/components/explorer/FilterArea'
 import TagClassContainer from '@/components/explorer/TagClassContainer'
-import { getAllTagClasses, getTagClassById } from '@/lib/explorer'
+import { TagsDispatchContext, TagsProvider } from '@/contexts/TagsContext'
+import type { Dnd } from '@/types/dnd'
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 
 const Explorer = () => {
-    const [filterTagClasses, setFilterTagClasses] = useState<
-        (TagClass | undefined)[]
-    >([undefined, undefined, undefined])
+    const { handleDragEnd } = useContext(TagsDispatchContext)
 
-    const [tagClasses, setTagClasses] = useState<TagClass[]>(getAllTagClasses())
-
-    const handleDragEnd = (e: DragEndEvent) => {
+    const onDragEnd = (e: DragEndEvent) => {
         if (!e.over) return
 
         const activeData = e.active.data.current as Dnd.DragEndData
         const overData = e.over.data.current as Dnd.DragEndData
 
-        if (
-            activeData.type === 'TagClassFromContainer' &&
-            overData.type === 'TagClassArea'
-        ) {
-            const tagClassId = (activeData as Dnd.TagClassData).tagClass.id
-            const filterTagClass = (overData as Dnd.TagClassAreaData).tagClass
-            if (filterTagClass) return
-
-            const filterId = (overData as Dnd.TagClassAreaData).tagAreaId
-            moveTagClassToFilter(tagClassId, filterId)
-        } else if (
-            activeData.type === 'TagClassArea' &&
-            overData.type === 'TagClassArea'
-        ) {
-            const sourceTagClass = (activeData as Dnd.TagClassAreaData).tagClass
-            const sourceTagAreaId = (activeData as Dnd.TagClassAreaData)
-                .tagAreaId
-            const targetTagClass = (overData as Dnd.TagClassAreaData).tagClass
-            const targetTagAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
-
-            if (!sourceTagClass || !targetTagClass) return
-
-            switchTagClasses(
-                sourceTagClass,
-                sourceTagAreaId,
-                targetTagClass,
-                targetTagAreaId,
-            )
-        } else if (
-            activeData.type === 'TagClassFromFilter' &&
-            overData.type === 'TagClassContainer'
-        ) {
-            const tagClassId = (activeData as Dnd.TagClassData).tagClass.id
-            removeTagClassFromFilter(tagClassId)
-        } else if (
-            activeData.type === 'TagClassFromFilter' &&
-            overData.type === 'TagClassArea'
-        ) {
-            const sourceTagClass = (activeData as Dnd.TagClassData).tagClass
-            const sourceTagAreaId = (activeData as Dnd.TagClassFilterData)
-                .tagAreaId
-
-            const targetTagClass = (overData as Dnd.TagClassAreaData).tagClass
-            const targetTagAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
-
-            if (!sourceTagClass || !targetTagClass) return
-
-            switchTagClasses(
-                sourceTagClass,
-                sourceTagAreaId,
-                targetTagClass,
-                targetTagAreaId,
-            )
-        }
-    }
-
-    const moveTagClassToFilter = (tagClassId: number, filterId: number) => {
-        const selectedTagClass = tagClasses.find(
-            (tagClass) => tagClass.id === tagClassId,
-        )
-        if (!selectedTagClass) return
-
-        const updatedFilterTagClasses = [...filterTagClasses]
-        updatedFilterTagClasses[filterId] = selectedTagClass
-        setFilterTagClasses(updatedFilterTagClasses)
-
-        const updatedTagClasses = tagClasses.filter(
-            (tagClass) => !updatedFilterTagClasses.includes(tagClass),
-        )
-        setTagClasses(updatedTagClasses)
-    }
-
-    const removeTagClassFromFilter = (tagClassId: number) => {
-        const updatedFilterTagClasses = filterTagClasses.map((tagClass) =>
-            tagClass?.id === tagClassId ? undefined : tagClass,
-        )
-        const notEmptyTagClasses = updatedFilterTagClasses.filter(
-            (tagClass) => tagClass,
-        )
-
-        //? Add empty tag class area if there are less than 3 tag classes
-        if (notEmptyTagClasses.length < 3) {
-            notEmptyTagClasses.push(undefined)
-        }
-
-        setFilterTagClasses(notEmptyTagClasses)
-
-        const tagClass = getTagClassById(tagClassId)!
-        setTagClasses([...tagClasses, tagClass])
-
-        return updatedFilterTagClasses
-    }
-
-    const switchTagClasses = (
-        sourceTagClass: TagClass,
-        sourceTagAreaId: number,
-        targetTagClass: TagClass,
-        targetTagAreaId: number,
-    ) => {
-        if (!targetTagClass || !sourceTagClass) return
-
-        const updatedFilterTagClasses = [...filterTagClasses]
-        updatedFilterTagClasses[sourceTagAreaId] = targetTagClass
-        updatedFilterTagClasses[targetTagAreaId] = sourceTagClass
-
-        setFilterTagClasses(updatedFilterTagClasses)
+        handleDragEnd(activeData, overData)
     }
 
     return (
         <section className="explorer gap-5">
             <h1 className="page-label">Explorer</h1>
-            <DndContext onDragEnd={handleDragEnd} autoScroll={false}>
-                <TagClassContainer tagClasses={tagClasses} />
-                <FilterArea
-                    tagClasses={filterTagClasses}
-                    onRemoveTagClass={removeTagClassFromFilter}
-                />
-            </DndContext>
+            <TagsProvider>
+                <DndContext onDragEnd={onDragEnd} autoScroll={false}>
+                    <TagClassContainer />
+                    <FilterArea />
+                </DndContext>
+            </TagsProvider>
         </section>
     )
 }

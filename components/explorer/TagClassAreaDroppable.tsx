@@ -1,3 +1,5 @@
+import type { Dnd } from '@/types/dnd'
+import type { TagClassAreaDroppableProps } from '@/types/explorer'
 import { useDroppable } from '@dnd-kit/core'
 import React from 'react'
 

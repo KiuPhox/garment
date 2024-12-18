@@ -1,3 +1,5 @@
+import type { Dnd } from '@/types/dnd'
+import type { TagClassFilterDraggableProps } from '@/types/explorer'
 import { useDraggable } from '@dnd-kit/core'
 import Image from 'next/image'
 import React from 'react'

@@ -1,3 +1,5 @@
+import type { ExplorerFile, Tag, TagClass } from '@/types/explorer'
+
 export const tagClasses: TagClass[] = [
     {
         id: 1,

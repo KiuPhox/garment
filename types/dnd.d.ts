@@ -1,3 +1,5 @@
+import type { TagClass } from './explorer'
+
 namespace Dnd {
     const DndTypes = {
         TagClassContainer = 'tag-class-container',

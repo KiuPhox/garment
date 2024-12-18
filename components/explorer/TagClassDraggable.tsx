@@ -1,3 +1,5 @@
+import type { Dnd } from '@/types/dnd'
+import type { TagClassDraggableProps } from '@/types/explorer'
 import { useDraggable } from '@dnd-kit/core'
 import React from 'react'
 

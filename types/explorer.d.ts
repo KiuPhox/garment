@@ -1,50 +1,39 @@
-declare type TagClass = {
+export interface TagClass {
     id: number
     name: string
 }
 
-declare type Tag = {
+export interface Tag {
     id: number
     tagClassId: number
     name: string
 }
 
-declare type ExplorerFile = {
+export interface ExplorerFile {
     id: number
     name: string
     tags: number[]
 }
 
-declare type TagClassContainerProps = {
-    tagClasses: TagClass[]
-}
-
-declare type TagClassAreaProps = {
+export interface TagClassAreaProps {
     id: number
     tagClassId?: number
-    onRemoveTagClass: (tagClassId: number) => void
 }
 
-declare type TagClassAreaDraggableProps = {
+export interface TagClassAreaDraggableProps {
     id: number
     tagClassId: number
-    onRemoveTagClass: (tagClassId: number) => void
 }
 
-declare type TagClassDraggableProps = {
+export interface TagClassDraggableProps {
     tagClass: TagClass
 }
 
-declare type TagClassFilterDraggableProps = {
+export type TagClassFilterDraggableProps = {
     tagAreaId: number
     onRemoveClicked: () => void
 } & TagClassDraggableProps
 
-declare type TagClassAreaDroppableProps = {
+export interface TagClassAreaDroppableProps {
     id: number
-}
-
-declare type FilterAreaProps = {
-    tagClasses: (TagClass | undefined)[]
-    onRemoveTagClass: (tagClassId: number) => void
 }

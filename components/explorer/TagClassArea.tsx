@@ -1,20 +1,13 @@
 import React from 'react'
 import TagClassAreaDraggable from './TagClassAreaDraggable'
 import TagClassAreaDroppable from './TagClassAreaDroppable'
+import type { TagClassAreaProps } from '@/types/explorer'
 
-const TagClassArea = ({
-    tagClassId,
-    id,
-    onRemoveTagClass,
-}: TagClassAreaProps) => {
+const TagClassArea = ({ tagClassId, id }: TagClassAreaProps) => {
     return (
         <div className="flex-1 max-w-80">
             {tagClassId ? (
-                <TagClassAreaDraggable
-                    id={id}
-                    tagClassId={tagClassId}
-                    onRemoveTagClass={onRemoveTagClass}
-                />
+                <TagClassAreaDraggable id={id} tagClassId={tagClassId} />
             ) : (
                 <TagClassAreaDroppable id={id} />
             )}
