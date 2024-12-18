@@ -70,6 +70,7 @@ const TagClassAreaDraggable = ({
                     </div>
                     <TagClassFilterDraggable
                         tagClass={tagClass}
+                        tagAreaId={id}
                         onRemoveClicked={onRemoveClicked}
                     />
                 </div>

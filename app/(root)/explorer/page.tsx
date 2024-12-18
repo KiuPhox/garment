@@ -53,6 +53,25 @@ const Explorer = () => {
         ) {
             const tagClassId = (activeData as Dnd.TagClassData).tagClass.id
             removeTagClassFromFilter(tagClassId)
+        } else if (
+            activeData.type === 'TagClassFromFilter' &&
+            overData.type === 'TagClassArea'
+        ) {
+            const sourceTagClass = (activeData as Dnd.TagClassData).tagClass
+            const sourceTagAreaId = (activeData as Dnd.TagClassFilterData)
+                .tagAreaId
+
+            const targetTagClass = (overData as Dnd.TagClassAreaData).tagClass
+            const targetTagAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
+
+            if (!sourceTagClass || !targetTagClass) return
+
+            switchTagClasses(
+                sourceTagClass,
+                sourceTagAreaId,
+                targetTagClass,
+                targetTagAreaId,
+            )
         }
     }
 

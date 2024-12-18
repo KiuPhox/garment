@@ -4,14 +4,16 @@ import React from 'react'
 
 const TagClassFilterDraggable = ({
     tagClass,
+    tagAreaId,
     onRemoveClicked,
-}: TagCLassFilterDraggableProps) => {
+}: TagClassFilterDraggableProps) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
         id: `tag-class-${tagClass.id}`,
         data: {
             tagClass,
+            tagAreaId,
             type: 'TagClassFromFilter',
-        } as Dnd.TagClassData,
+        } as Dnd.TagClassFilterData,
     })
 
     const style = transform

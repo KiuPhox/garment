@@ -35,7 +35,8 @@ declare type TagClassDraggableProps = {
     tagClass: TagClass
 }
 
-declare type TagCLassFilterDraggableProps = {
+declare type TagClassFilterDraggableProps = {
+    tagAreaId: number
     onRemoveClicked: () => void
 } & TagClassDraggableProps
 

@@ -15,6 +15,10 @@ namespace Dnd {
         tagClass: TagClass
     } & DragEndData
 
+    type TagClassFilterData = {
+        tagAreaId: number
+    } & TagClassData
+
     type TagClassAreaData = {
         tagAreaId: number
         tagClass?: TagClass
