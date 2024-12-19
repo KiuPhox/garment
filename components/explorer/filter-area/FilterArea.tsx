@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import TagClassArea from './TagClassArea'
-import FileArea from './FileArea'
 import TagsContext from '@/contexts/TagsContext'
+import FileArea from '../file-area/FileArea'
+import TagClassArea from './TagClassArea'
 
 const FilterArea = () => {
     const { filterTagClasses: tagClasses } = useContext(TagsContext)

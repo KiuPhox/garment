@@ -1,9 +1,9 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
 import React, { useContext } from 'react'
-import FilterArea from './FilterArea'
-import TagClassContainer from './TagClassContainer'
+import TagClassContainer from './tag-container/TagClassContainer'
 import { TagsDispatchContext } from '@/contexts/TagsContext'
 import type { Dnd } from '@/types/dnd'
+import FilterArea from './filter-area/FilterArea'
 
 const ExplorerContainer = () => {
     const { handleDragEnd } = useContext(TagsDispatchContext)
@@ -26,4 +26,3 @@ const ExplorerContainer = () => {
 }
 
 export default ExplorerContainer
-

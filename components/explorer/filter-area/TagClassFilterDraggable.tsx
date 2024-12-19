@@ -1,8 +1,11 @@
 import type { Dnd } from '@/types/dnd'
 import type { TagClassFilterDraggableProps } from '@/types/explorer'
+import Utils from '@/utils'
 import { useDraggable } from '@dnd-kit/core'
 import Image from 'next/image'
 import React from 'react'
+
+const { String: S } = Utils
 
 const TagClassFilterDraggable = ({
     tagClass,
@@ -25,6 +28,11 @@ const TagClassFilterDraggable = ({
           }
         : undefined
 
+    const tagClassName =
+        tagClass.name.length > 28
+            ? S.getShortName(tagClass.name, 28).concat('...')
+            : tagClass.name
+
     return (
         <div
             ref={setNodeRef}
@@ -32,7 +40,7 @@ const TagClassFilterDraggable = ({
             className="flex justify-between bg-gray-200 px-3 py-2 rounded-md "
         >
             <div {...attributes} {...listeners} className="w-full">
-                {tagClass.name}
+                {tagClassName}
             </div>
             <div
                 className="flex justify-center w-8 cursor-pointer"
@@ -45,4 +53,3 @@ const TagClassFilterDraggable = ({
 }
 
 export default TagClassFilterDraggable
-

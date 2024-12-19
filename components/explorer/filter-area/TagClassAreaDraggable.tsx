@@ -6,6 +6,9 @@ import TagClassFilterDraggable from './TagClassFilterDraggable'
 import type { TagClassAreaDraggableProps } from '@/types/explorer'
 import type { Dnd } from '@/types/dnd'
 import { TagsDispatchContext } from '@/contexts/TagsContext'
+import Utils from '@/utils'
+
+const { String: S } = Utils
 
 const TagClassAreaDraggable = ({
     id,
@@ -86,7 +89,11 @@ const TagClassAreaDraggable = ({
                             key={tag.id}
                             className="bg-gray-200 px-3 py-2 rounded-md"
                         >
-                            {tag.name}
+                            {tag.name.length > 28
+                                ? S.getShortName(tagClass.name, 28).concat(
+                                      '...',
+                                  )
+                                : tag.name}
                         </div>
                     ))}
                 </div>

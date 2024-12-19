@@ -1,4 +1,5 @@
 import { files, tagClasses, tags } from '@/constants/explorer'
+import type { ExplorerFile, Tag, TagClass } from '@/types/explorer'
 
 export function getAllTagClasses(): TagClass[] {
     return tagClasses
