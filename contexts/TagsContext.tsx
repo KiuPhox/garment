@@ -1,13 +1,16 @@
 import { getAllTagClasses, getTagClassById } from '@/lib/explorer'
 import type { Dnd } from '@/types/dnd'
-import type { TagClass } from '@/types/explorer'
+import type { Tag, TagClass } from '@/types/explorer'
 import { createContext, useState } from 'react'
 
 const TagsContext = createContext({
     tagClasses: [] as TagClass[],
     filterTagClasses: [] as (TagClass | undefined)[],
-    setFilterTagClasses: (tagClasses: TagClass[]) => {},
+    filterTags: [] as (TagClass | undefined)[],
+
     setTagClasses: (tagClasses: TagClass[]) => {},
+    setFilterTagClasses: (tagClasses: TagClass[]) => {},
+    setFilterTags: (tags: Tag[]) => {},
 })
 
 const TagsDispatchContext = createContext({
@@ -15,6 +18,7 @@ const TagsDispatchContext = createContext({
         activeData: Dnd.DragEndData,
         overData: Dnd.DragEndData,
     ) => {},
+    selectTagFromFilter: (tag: Tag, filterId: number) => {},
     deleteTagClassFromFilter: (tagClassId: number) => {},
 })
 
@@ -22,6 +26,12 @@ export const TagsProvider = ({ children }: any) => {
     const [filterTagClasses, setFilterTagClasses] = useState<
         (TagClass | undefined)[]
     >([undefined, undefined, undefined])
+
+    const [filterTags, setFilterTags] = useState<(Tag | undefined)[]>([
+        undefined,
+        undefined,
+        undefined,
+    ])
 
     const [tagClasses, setTagClasses] = useState<TagClass[]>(getAllTagClasses())
 
@@ -124,6 +134,12 @@ export const TagsProvider = ({ children }: any) => {
         return updatedFilterTagClasses
     }
 
+    const selectTagFromFilter = (tag: Tag, filterId: number) => {
+        const updatedFilterTags = [...filterTags]
+        updatedFilterTags[filterId] = tag
+        setFilterTags(updatedFilterTags)
+    }
+
     const switchTagClassFilter = (
         sourceTagClass: TagClass,
         sourceTagAreaId: number,
@@ -144,13 +160,16 @@ export const TagsProvider = ({ children }: any) => {
             value={{
                 tagClasses,
                 filterTagClasses,
-                setFilterTagClasses,
+                filterTags,
                 setTagClasses,
+                setFilterTagClasses,
+                setFilterTags,
             }}
         >
             <TagsDispatchContext.Provider
                 value={{
                     handleDragEnd,
+                    selectTagFromFilter,
                     deleteTagClassFromFilter,
                 }}
             >

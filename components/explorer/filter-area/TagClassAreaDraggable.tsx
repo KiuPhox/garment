@@ -1,14 +1,12 @@
 import { getAllTagsByTagClass, getTagClassById } from '@/lib/explorer'
 import { useDraggable, useDroppable } from '@dnd-kit/core'
 import Image from 'next/image'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import TagClassFilterDraggable from './TagClassFilterDraggable'
-import type { TagClassAreaDraggableProps } from '@/types/explorer'
+import type { Tag, TagClassAreaDraggableProps } from '@/types/explorer'
 import type { Dnd } from '@/types/dnd'
 import { TagsDispatchContext } from '@/contexts/TagsContext'
-import Utils from '@/utils'
-
-const { String: S } = Utils
+import TagFilter from './TagFilter'
 
 const TagClassAreaDraggable = ({
     id,
@@ -16,8 +14,11 @@ const TagClassAreaDraggable = ({
 }: TagClassAreaDraggableProps) => {
     const tagClass = getTagClassById(tagClassId)!
     const tags = getAllTagsByTagClass(tagClassId)!
-    const { deleteTagClassFromFilter: handleRemoveTagClass } =
-        useContext(TagsDispatchContext)
+
+    const {
+        deleteTagClassFromFilter: handleRemoveTagClass,
+        selectTagFromFilter,
+    } = useContext(TagsDispatchContext)
 
     const {
         attributes,
@@ -49,8 +50,12 @@ const TagClassAreaDraggable = ({
           }
         : undefined
 
-    const onRemoveClicked = () => {
+    const onTagClassRemoveClicked = () => {
         handleRemoveTagClass(tagClassId)
+    }
+
+    const onTagSelected = (tag: Tag) => {
+        selectTagFromFilter(tag, id)
     }
 
     return (
@@ -78,23 +83,18 @@ const TagClassAreaDraggable = ({
                     <TagClassFilterDraggable
                         tagClass={tagClass}
                         tagAreaId={id}
-                        onRemoveClicked={onRemoveClicked}
+                        onRemoveClicked={onTagClassRemoveClicked}
                     />
                 </div>
                 <div className="h-[1px] bg-gray-300"></div>
                 <div className="flex flex-col gap-2">
                     <p className="text-gray-500 text-14 mb-3">Tag(s)</p>
                     {tags.map((tag) => (
-                        <div
+                        <TagFilter
+                            tag={tag}
                             key={tag.id}
-                            className="bg-gray-200 px-3 py-2 rounded-md"
-                        >
-                            {tag.name.length > 28
-                                ? S.getShortName(tagClass.name, 28).concat(
-                                      '...',
-                                  )
-                                : tag.name}
-                        </div>
+                            onSelected={onTagSelected}
+                        />
                     ))}
                 </div>
             </div>

@@ -1,3 +1,5 @@
+import type exp from 'constants'
+
 export interface TagClass {
     id: number
     name: string
@@ -36,4 +38,9 @@ export type TagClassFilterDraggableProps = {
 
 export interface TagClassAreaDroppableProps {
     id: number
+}
+
+export interface TagFilterProps {
+    tag: Tag
+    onSelected: (tag: Tag) => void
 }
