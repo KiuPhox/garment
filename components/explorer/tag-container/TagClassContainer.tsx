@@ -45,7 +45,7 @@ const TagClassContainer = () => {
                     'transition-all',
                 )}
             >
-                <div className="m-1 flex flex-wrap">
+                <div className="flex flex-wrap gap-2 m-2">
                     {tagClasses.map((tagClass) => (
                         <TagClassDraggable
                             key={tagClass.id}

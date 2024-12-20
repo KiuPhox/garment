@@ -2,6 +2,7 @@ import type { TagFilterProps } from '@/types/explorer'
 import React, { useContext } from 'react'
 import Utils from '@/utils'
 import TagsContext from '@/contexts/TagsContext'
+import { getAllFilesByTags } from '@/lib/explorer'
 
 const { String: S } = Utils
 
@@ -14,6 +15,8 @@ const TagFilter = ({
 
     const isSelected =
         tagClassAreas.find((t) => t?.tagId === tag.id) !== undefined
+
+    const files = getAllFilesByTags([tag.id])
 
     const handleOnClicked = () => {
         if (isSelected) {
@@ -32,12 +35,18 @@ const TagFilter = ({
                 'py-2',
                 'rounded-md',
                 'cursor-pointer',
+                'flex',
+                'justify-between',
+                'items-center',
             )}
             onClick={handleOnClicked}
         >
-            {tag.name.length > 28
-                ? S.getShortName(tag.name, 28).concat('...')
-                : tag.name}
+            <div>
+                {tag.name.length > 28
+                    ? S.getShortName(tag.name, 28).concat('...')
+                    : tag.name}
+            </div>
+            <div className="text-12">({files.length})</div>
         </div>
     )
 }

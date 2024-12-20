@@ -15,6 +15,9 @@ export interface ExplorerFile {
     id: number
     name: string
     tags: number[]
+    type: 'jpg' | 'png' | 'pdf'
+    owner: string
+    size: number
 }
 
 export interface TagClassAreaProps {
@@ -50,4 +53,8 @@ export interface TagFilterProps {
 
 export interface FileAreaResultProps {
     files: ExplorerFile[]
+}
+
+export interface FileContainerProps {
+    file: ExplorerFile
 }

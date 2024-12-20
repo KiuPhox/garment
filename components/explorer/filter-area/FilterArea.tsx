@@ -12,7 +12,7 @@ const FilterArea = () => {
     return (
         <section className="flex flex-col gap-2 h-full">
             <h2 className="text-gray-600 font-medium">Filter area</h2>
-            <div className="h-full flex flex-row gap-10">
+            <div className="h-full flex flex-row gap-5">
                 {notEmptyTagAreas.map((tagArea, index) => {
                     return (
                         <TagClassArea
