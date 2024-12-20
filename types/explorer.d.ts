@@ -46,3 +46,7 @@ export interface TagFilterProps {
     tag: Tag
     onSelected: (tag: Tag) => void
 }
+
+export interface FileAreaResultProps {
+    files: ExplorerFile[]
+}

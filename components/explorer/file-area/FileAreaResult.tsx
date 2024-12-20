@@ -1,7 +1,9 @@
+import type { FileAreaResultProps } from '@/types/explorer'
 import React from 'react'
 
-const FileAreaDroppable = () => {
-    return <div>FileAreaDroppable</div>
+const FileAreaResult = ({ files }: FileAreaResultProps) => {
+    return <div>File: {files.length}</div>
 }
 
-export default FileAreaDroppable
+export default FileAreaResult
+

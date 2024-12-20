@@ -17,9 +17,8 @@ export function getTagById(id: number): Tag | undefined {
     return tags.find((tag) => tag.id === id)
 }
 
-export function getAllFilesByTags(
-    tagIds: number[],
-): ExplorerFile[] | undefined {
+export function getAllFilesByTags(tagIds: number[]): ExplorerFile[] {
+    if (tagIds.length === 0) return []
     return files.filter((file) =>
         tagIds.every((tagId) => file.tags.includes(tagId)),
     )
