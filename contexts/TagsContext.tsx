@@ -1,16 +1,16 @@
 import { getAllTagClasses, getTagClassById } from '@/lib/explorer'
 import type { Dnd } from '@/types/dnd'
-import type { Tag, TagClass } from '@/types/explorer'
+import type { Tag, TagClass, TagClassAreaProps } from '@/types/explorer'
 import { createContext, useState } from 'react'
+
+type TagClassArea = Omit<TagClassAreaProps, 'id'> | undefined
 
 const TagsContext = createContext({
     tagClasses: [] as TagClass[],
-    filterTagClasses: [] as (TagClass | undefined)[],
-    filterTags: [] as (TagClass | undefined)[],
+    tagClassAreas: [] as TagClassArea[],
 
     setTagClasses: (tagClasses: TagClass[]) => {},
-    setFilterTagClasses: (tagClasses: TagClass[]) => {},
-    setFilterTags: (tags: Tag[]) => {},
+    setTagClassAreas: (tagClassAreas: TagClassArea[]) => {},
 })
 
 const TagsDispatchContext = createContext({
@@ -18,22 +18,18 @@ const TagsDispatchContext = createContext({
         activeData: Dnd.DragEndData,
         overData: Dnd.DragEndData,
     ) => {},
-    selectTagFromFilter: (tag: Tag, filterId: number) => {},
-    deleteTagClassFromFilter: (tagClassId: number) => {},
+    selectTagFromArea: (tag: Tag, areaId: number) => {},
+    deleteTagClassFromArea: (tagClassId: number) => {},
 })
 
 export const TagsProvider = ({ children }: any) => {
-    const [filterTagClasses, setFilterTagClasses] = useState<
-        (TagClass | undefined)[]
-    >([undefined, undefined, undefined])
+    const [tagClasses, setTagClasses] = useState<TagClass[]>(getAllTagClasses())
 
-    const [filterTags, setFilterTags] = useState<(Tag | undefined)[]>([
+    const [tagClassAreas, setTagClassAreas] = useState<TagClassArea[]>([
         undefined,
         undefined,
         undefined,
     ])
-
-    const [tagClasses, setTagClasses] = useState<TagClass[]>(getAllTagClasses())
 
     const handleDragEnd = (
         activeData: Dnd.DragEndData,
@@ -44,133 +40,123 @@ export const TagsProvider = ({ children }: any) => {
             overData.type === 'TagClassArea'
         ) {
             const tagClassId = (activeData as Dnd.TagClassData).tagClass.id
-            const filterTagClass = (overData as Dnd.TagClassAreaData).tagClass
-            if (filterTagClass) return
+            const tagClassArea = (overData as Dnd.TagClassAreaData).tagClass
+            if (tagClassArea) return
 
-            const filterId = (overData as Dnd.TagClassAreaData).tagAreaId
-            addTagClassToFilter(tagClassId, filterId)
+            const tagClassAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
+
+            addTagClassToArea(tagClassId, tagClassAreaId)
         } else if (
             activeData.type === 'TagClassArea' &&
             overData.type === 'TagClassArea'
         ) {
-            const sourceTagClass = (activeData as Dnd.TagClassAreaData).tagClass
             const sourceTagAreaId = (activeData as Dnd.TagClassAreaData)
                 .tagAreaId
 
-            const targetTagClass = (overData as Dnd.TagClassAreaData).tagClass
             const targetTagAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
 
-            if (!sourceTagClass || !targetTagClass) return
-
-            switchTagClassFilter(
-                sourceTagClass,
-                sourceTagAreaId,
-                targetTagClass,
-                targetTagAreaId,
-            )
+            switchTagClassArea(sourceTagAreaId, targetTagAreaId)
         } else if (
             activeData.type === 'TagClassFromFilter' &&
             overData.type === 'TagClassArea'
         ) {
-            const sourceTagClass = (activeData as Dnd.TagClassFilterData)
-                .tagClass
             const sourceTagAreaId = (activeData as Dnd.TagClassFilterData)
                 .tagAreaId
             const targetTagAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
-            const targetTagClass = (overData as Dnd.TagClassAreaData).tagClass
 
-            if (!sourceTagClass || !targetTagClass) return
-
-            switchTagClassFilter(
-                sourceTagClass,
-                sourceTagAreaId,
-                targetTagClass,
-                targetTagAreaId,
-            )
+            switchTagClassArea(sourceTagAreaId, targetTagAreaId)
         } else if (
             activeData.type === 'TagClassFromFilter' &&
             overData.type === 'TagClassContainer'
         ) {
             const tagClassId = (activeData as Dnd.TagClassFilterData).tagClass
                 .id
-            deleteTagClassFromFilter(tagClassId)
+            deleteTagClassFromArea(tagClassId)
         }
     }
 
-    const addTagClassToFilter = (tagClassId: number, filterId: number) => {
+    const addTagClassToArea = (tagClassId: number, tagAreaId: number) => {
         const selectedTagClass = tagClasses.find(
             (tagClass) => tagClass.id === tagClassId,
         )
         if (!selectedTagClass) return
 
-        const updatedFilterTagClasses = [...filterTagClasses]
-        updatedFilterTagClasses[filterId] = selectedTagClass
-        setFilterTagClasses(updatedFilterTagClasses)
+        const updatedTagClassAreas = [...tagClassAreas]
+        updatedTagClassAreas[tagAreaId] = {
+            tagClassId,
+            tagId: undefined,
+        }
+
+        setTagClassAreas(updatedTagClassAreas)
 
         const updatedTagClasses = tagClasses.filter(
-            (tagClass) => !updatedFilterTagClasses.includes(tagClass),
+            (tagClass) => tagClass.id !== tagClassId,
         )
         setTagClasses(updatedTagClasses)
     }
 
-    const deleteTagClassFromFilter = (tagClassId: number) => {
-        const updatedFilterTagClasses = filterTagClasses.map((tagClass) =>
-            tagClass?.id === tagClassId ? undefined : tagClass,
-        )
-        const notEmptyTagClasses = updatedFilterTagClasses.filter(
-            (tagClass) => tagClass,
+    const deleteTagClassFromArea = (tagClassId: number) => {
+        const updatedTagClassAreas = tagClassAreas.map((tagClassArea) => {
+            if (tagClassArea?.tagClassId === tagClassId) {
+                return undefined
+            }
+            return tagClassArea
+        })
+        const notEmptyAreas = updatedTagClassAreas.filter(
+            (tagClassArea) => tagClassArea,
         )
 
         //? Add empty tag class area if there are less than 3 tag classes
-        if (notEmptyTagClasses.length < 3) {
-            notEmptyTagClasses.push(undefined)
+        if (notEmptyAreas.length < 3) {
+            notEmptyAreas.push(undefined)
         }
 
-        setFilterTagClasses(notEmptyTagClasses)
+        setTagClassAreas(notEmptyAreas)
 
         const tagClass = getTagClassById(tagClassId)!
         setTagClasses([...tagClasses, tagClass])
-
-        return updatedFilterTagClasses
     }
 
-    const selectTagFromFilter = (tag: Tag, filterId: number) => {
-        const updatedFilterTags = [...filterTags]
-        updatedFilterTags[filterId] = tag
-        setFilterTags(updatedFilterTags)
+    const selectTagFromArea = (tag: Tag, areaId: number) => {
+        const updatedTagClassAreas = [...tagClassAreas]
+        updatedTagClassAreas[areaId] = {
+            tagClassId: tag.tagClassId,
+            tagId: tag.id,
+        }
+
+        setTagClassAreas(updatedTagClassAreas)
     }
 
-    const switchTagClassFilter = (
-        sourceTagClass: TagClass,
+    const switchTagClassArea = (
         sourceTagAreaId: number,
-        targetTagClass: TagClass,
         targetTagAreaId: number,
     ) => {
-        if (!targetTagClass || !sourceTagClass) return
+        const sourceTagArea = tagClassAreas[sourceTagAreaId]
+        const targetTagArea = tagClassAreas[targetTagAreaId]
 
-        const updatedFilterTagClasses = [...filterTagClasses]
-        updatedFilterTagClasses[sourceTagAreaId] = targetTagClass
-        updatedFilterTagClasses[targetTagAreaId] = sourceTagClass
+        if (!sourceTagArea?.tagClassId || !targetTagArea?.tagClassId) return
 
-        setFilterTagClasses(updatedFilterTagClasses)
+        const updatedTagClassAreas = [...tagClassAreas]
+        updatedTagClassAreas[sourceTagAreaId] = targetTagArea
+        updatedTagClassAreas[targetTagAreaId] = sourceTagArea
+
+        setTagClassAreas(updatedTagClassAreas)
     }
 
     return (
         <TagsContext.Provider
             value={{
                 tagClasses,
-                filterTagClasses,
-                filterTags,
+                tagClassAreas,
                 setTagClasses,
-                setFilterTagClasses,
-                setFilterTags,
+                setTagClassAreas,
             }}
         >
             <TagsDispatchContext.Provider
                 value={{
                     handleDragEnd,
-                    selectTagFromFilter,
-                    deleteTagClassFromFilter,
+                    selectTagFromArea,
+                    deleteTagClassFromArea,
                 }}
             >
                 {children}

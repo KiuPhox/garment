@@ -1,7 +1,7 @@
 import { getAllTagsByTagClass, getTagClassById } from '@/lib/explorer'
 import { useDraggable, useDroppable } from '@dnd-kit/core'
 import Image from 'next/image'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import TagClassFilterDraggable from './TagClassFilterDraggable'
 import type { Tag, TagClassAreaDraggableProps } from '@/types/explorer'
 import type { Dnd } from '@/types/dnd'
@@ -15,10 +15,8 @@ const TagClassAreaDraggable = ({
     const tagClass = getTagClassById(tagClassId)!
     const tags = getAllTagsByTagClass(tagClassId)!
 
-    const {
-        deleteTagClassFromFilter: handleRemoveTagClass,
-        selectTagFromFilter,
-    } = useContext(TagsDispatchContext)
+    const { deleteTagClassFromArea: handleRemoveTagClass, selectTagFromArea } =
+        useContext(TagsDispatchContext)
 
     const {
         attributes,
@@ -55,7 +53,7 @@ const TagClassAreaDraggable = ({
     }
 
     const onTagSelected = (tag: Tag) => {
-        selectTagFromFilter(tag, id)
+        selectTagFromArea(tag, id)
     }
 
     return (

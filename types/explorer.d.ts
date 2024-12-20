@@ -20,11 +20,13 @@ export interface ExplorerFile {
 export interface TagClassAreaProps {
     id: number
     tagClassId?: number
+    tagId?: number
 }
 
 export interface TagClassAreaDraggableProps {
     id: number
     tagClassId: number
+    tagId?: number
 }
 
 export interface TagClassDraggableProps {

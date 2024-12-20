@@ -6,9 +6,10 @@ import TagsContext from '@/contexts/TagsContext'
 const { String: S } = Utils
 
 const TagFilter = ({ tag, onSelected: handleOnSelected }: TagFilterProps) => {
-    const { filterTags } = useContext(TagsContext)
+    const { tagClassAreas } = useContext(TagsContext)
 
-    const isSelected = filterTags.find((t) => t?.id === tag.id) !== undefined
+    const isSelected =
+        tagClassAreas.find((t) => t?.tagId === tag.id) !== undefined
 
     const handleOnClicked = () => {
         handleOnSelected(tag)
@@ -34,4 +35,3 @@ const TagFilter = ({ tag, onSelected: handleOnSelected }: TagFilterProps) => {
 }
 
 export default TagFilter
-
