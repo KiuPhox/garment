@@ -15,8 +15,11 @@ const TagClassAreaDraggable = ({
     const tagClass = getTagClassById(tagClassId)!
     const tags = getAllTagsByTagClass(tagClassId)!
 
-    const { deleteTagClassFromArea: handleRemoveTagClass, selectTagFromArea } =
-        useContext(TagsDispatchContext)
+    const {
+        deleteTagClassFromArea: handleRemoveTagClass,
+        selectTagFromArea,
+        deleteTagFromArea,
+    } = useContext(TagsDispatchContext)
 
     const {
         attributes,
@@ -56,6 +59,10 @@ const TagClassAreaDraggable = ({
         selectTagFromArea(tag, id)
     }
 
+    const onTagUnselected = (tag: Tag) => {
+        deleteTagFromArea(id)
+    }
+
     return (
         <div
             ref={setDraggableNodeRef}
@@ -92,6 +99,7 @@ const TagClassAreaDraggable = ({
                             tag={tag}
                             key={tag.id}
                             onSelected={onTagSelected}
+                            onUnselected={onTagUnselected}
                         />
                     ))}
                 </div>

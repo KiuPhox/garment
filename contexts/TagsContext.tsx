@@ -19,6 +19,7 @@ const TagsDispatchContext = createContext({
         overData: Dnd.DragEndData,
     ) => {},
     selectTagFromArea: (tag: Tag, areaId: number) => {},
+    deleteTagFromArea: (areaId: number) => {},
     deleteTagClassFromArea: (tagClassId: number) => {},
 })
 
@@ -127,6 +128,19 @@ export const TagsProvider = ({ children }: any) => {
         setTagClassAreas(updatedTagClassAreas)
     }
 
+    const deleteTagFromArea = (areaId: number) => {
+        const updatedTagClassAreas = [...tagClassAreas]
+        const tagArea = updatedTagClassAreas[areaId]
+        if (!tagArea) return
+
+        updatedTagClassAreas[areaId] = {
+            tagClassId: tagArea.tagClassId,
+            tagId: undefined,
+        }
+
+        setTagClassAreas(updatedTagClassAreas)
+    }
+
     const switchTagClassArea = (
         sourceTagAreaId: number,
         targetTagAreaId: number,
@@ -156,6 +170,7 @@ export const TagsProvider = ({ children }: any) => {
                 value={{
                     handleDragEnd,
                     selectTagFromArea,
+                    deleteTagFromArea,
                     deleteTagClassFromArea,
                 }}
             >

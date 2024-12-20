@@ -45,6 +45,7 @@ export interface TagClassAreaDroppableProps {
 export interface TagFilterProps {
     tag: Tag
     onSelected: (tag: Tag) => void
+    onUnselected: (tag: Tag) => void
 }
 
 export interface FileAreaResultProps {
