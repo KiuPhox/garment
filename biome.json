@@ -45,7 +45,7 @@
                 },
                 "noGlobalIsNan": "off",
                 "noGlobalAssign": "warn",
-                "noArrayIndexKey": "warn"
+                "noArrayIndexKey": "off"
             },
             "style": {
                 "noVar": "warn",
