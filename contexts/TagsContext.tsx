@@ -1,6 +1,13 @@
-import { getAllTagClasses, getTagClassById } from '@/lib/explorer'
+import {
+    getAllFiles,
+    getAllFilesByTags,
+    getAllTagClasses,
+    getAllTagsByTagClass,
+    getTagById,
+    getTagClassById,
+} from '@/lib/explorer'
 import type { Dnd } from '@/types/dnd'
-import type { Tag, TagClass, TagClassAreaProps } from '@/types/explorer'
+import type { ExplorerFile, Tag, TagClass, TagClassAreaProps } from '@/types/explorer'
 import { createContext, useState } from 'react'
 
 type TagClassArea = Omit<TagClassAreaProps, 'id'> | undefined
@@ -62,9 +69,7 @@ export const TagsProvider = ({ children }: any) => {
         }
 
         setTagClassAreas(updatedTagClassAreas)
-
-        const updatedTagClasses = tagClasses.filter((tagClass) => tagClass.id !== tagClassId)
-        setTagClasses(updatedTagClasses)
+        updateTagClassContainer(updatedTagClassAreas)
     }
 
     const deleteTagClassFromArea = (tagClassId: number) => {
@@ -82,9 +87,7 @@ export const TagsProvider = ({ children }: any) => {
         }
 
         setTagClassAreas(notEmptyAreas)
-
-        const tagClass = getTagClassById(tagClassId)!
-        setTagClasses([...tagClasses, tagClass])
+        updateTagClassContainer(notEmptyAreas)
     }
 
     const selectTagFromArea = (tag: Tag, areaId: number) => {
@@ -121,6 +124,45 @@ export const TagsProvider = ({ children }: any) => {
         updatedTagClassAreas[targetTagAreaId] = sourceTagArea
 
         setTagClassAreas(updatedTagClassAreas)
+    }
+
+    const updateTagClassContainer = (tagClassAreas: TagClassArea[]) => {
+        const tagClassAreaIds = tagClassAreas
+            .map((tagClassArea) => tagClassArea?.tagClassId)
+            .filter((id) => id !== undefined)
+        const allTagClasses = getAllTagClasses()
+
+        if (tagClassAreaIds.length === 0) {
+            setTagClasses(allTagClasses)
+            return
+        }
+        const tagsInTagClassAreas: Tag[] = []
+
+        for (const tagClassId of tagClassAreaIds) {
+            const tags = getAllTagsByTagClass(tagClassId)
+            tagsInTagClassAreas.push(...tags)
+        }
+
+        const allFiles = getAllFiles()
+
+        const filesWithTagClassesInArea: ExplorerFile[] = []
+
+        for (const file of allFiles) {
+            if (file.tags.some((tagId) => tagsInTagClassAreas.find((tag) => tag.id === tagId))) {
+                filesWithTagClassesInArea.push(file)
+            }
+        }
+
+        const allTagsWithFiles = filesWithTagClassesInArea
+            .flatMap((file) => file.tags)
+            .map((tagId) => getTagById(tagId))
+            .filter((tag) => tag !== undefined) as Tag[]
+
+        const allTagClassesWithFiles = Array.from(
+            new Set(allTagsWithFiles.map((tag) => getTagClassById(tag?.tagClassId))),
+        ).filter((tagClass) => tagClass !== undefined && !tagClassAreaIds.includes(tagClass.id)) as TagClass[]
+
+        setTagClasses(allTagClassesWithFiles)
     }
 
     return (

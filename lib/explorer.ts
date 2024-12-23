@@ -21,3 +21,7 @@ export function getAllFilesByTags(tagIds: number[]): ExplorerFile[] {
     if (tagIds.length === 0) return []
     return files.filter((file) => tagIds.every((tagId) => file.tags.includes(tagId)))
 }
+
+export function getAllFiles(): ExplorerFile[] {
+    return files
+}
