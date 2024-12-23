@@ -444,7 +444,7 @@ export const files: ExplorerFile[] = [
     {
         id: 1,
         name: 'Document 1',
-        tags: [1, 2, 3],
+        tags: [55, 57, 58],
         type: 'png',
         owner: 'John Doe',
         size: 12.34,
@@ -452,7 +452,7 @@ export const files: ExplorerFile[] = [
     {
         id: 2,
         name: 'Customer List',
-        tags: [2, 15, 33],
+        tags: [52, 8, 32],
         type: 'pdf',
         owner: 'Jane Smith',
         size: 23.45,
@@ -460,7 +460,7 @@ export const files: ExplorerFile[] = [
     {
         id: 3,
         name: 'Sales Quotation',
-        tags: [3, 34, 4],
+        tags: [7, 47, 20],
         type: 'jpg',
         owner: 'Alice Johnson',
         size: 34.56,
@@ -468,7 +468,7 @@ export const files: ExplorerFile[] = [
     {
         id: 4,
         name: 'Employee Contract',
-        tags: [4, 35, 2],
+        tags: [11, 47, 20],
         type: 'png',
         owner: 'Bob Brown',
         size: 45.67,
@@ -476,7 +476,7 @@ export const files: ExplorerFile[] = [
     {
         id: 5,
         name: 'SEA Market Analysis',
-        tags: [5, 36],
+        tags: [25, 12, 31],
         type: 'png',
         owner: 'Charlie Davis',
         size: 11.22,
@@ -484,7 +484,7 @@ export const files: ExplorerFile[] = [
     {
         id: 6,
         name: 'Brand Guidelines',
-        tags: [6, 37, 8],
+        tags: [44, 59, 4],
         type: 'png',
         owner: 'Diana Evans',
         size: 22.33,
@@ -492,7 +492,7 @@ export const files: ExplorerFile[] = [
     {
         id: 7,
         name: 'Partner Gifts',
-        tags: [7, 38, 2],
+        tags: [24, 35, 7],
         type: 'png',
         owner: 'Ethan Harris',
         size: 33.44,
@@ -500,7 +500,7 @@ export const files: ExplorerFile[] = [
     {
         id: 8,
         name: 'Marketing Plan',
-        tags: [8, 39, 3],
+        tags: [39, 4, 4],
         type: 'pdf',
         owner: 'Fiona Clark',
         size: 44.55,
@@ -508,7 +508,7 @@ export const files: ExplorerFile[] = [
     {
         id: 9,
         name: 'Pitch Presentation',
-        tags: [9, 40, 34],
+        tags: [2, 15, 47],
         type: 'pdf',
         owner: 'George Lewis',
         size: 12.34,
@@ -516,7 +516,7 @@ export const files: ExplorerFile[] = [
     {
         id: 10,
         name: 'Expo Booth',
-        tags: [10, 41, 20],
+        tags: [41, 25, 8],
         type: 'jpg',
         owner: 'Hannah Walker',
         size: 23.45,
@@ -524,7 +524,7 @@ export const files: ExplorerFile[] = [
     {
         id: 11,
         name: 'User Guide',
-        tags: [11, 42, 24],
+        tags: [37, 1, 49],
         type: 'pdf',
         owner: 'Ian Young',
         size: 34.56,
@@ -532,7 +532,7 @@ export const files: ExplorerFile[] = [
     {
         id: 12,
         name: 'Employee Handbook',
-        tags: [12, 43, 15],
+        tags: [55, 10, 15],
         type: 'pdf',
         owner: 'Jack King',
         size: 45.67,
@@ -540,7 +540,7 @@ export const files: ExplorerFile[] = [
     {
         id: 13,
         name: 'Financial Statement',
-        tags: [13, 44, 28],
+        tags: [50, 57, 15],
         type: 'png',
         owner: 'Karen Wright',
         size: 11.22,
@@ -548,7 +548,7 @@ export const files: ExplorerFile[] = [
     {
         id: 14,
         name: 'Requirement Document',
-        tags: [14, 45, 25],
+        tags: [48, 8, 1],
         type: 'jpg',
         owner: 'Liam Scott',
         size: 22.33,
@@ -556,7 +556,7 @@ export const files: ExplorerFile[] = [
     {
         id: 15,
         name: 'Client List',
-        tags: [15, 46, 4],
+        tags: [25, 21, 40],
         type: 'png',
         owner: 'Mia Green',
         size: 33.44,
@@ -564,7 +564,7 @@ export const files: ExplorerFile[] = [
     {
         id: 16,
         name: 'Logistics Plan',
-        tags: [16, 47, 5],
+        tags: [7, 23, 20],
         type: 'jpg',
         owner: 'Noah Adams',
         size: 44.55,
@@ -572,7 +572,7 @@ export const files: ExplorerFile[] = [
     {
         id: 17,
         name: 'Vendor Contracts',
-        tags: [17, 48, 22],
+        tags: [32, 31, 15],
         type: 'pdf',
         owner: 'Olivia Baker',
         size: 12.34,
@@ -580,7 +580,7 @@ export const files: ExplorerFile[] = [
     {
         id: 18,
         name: 'Manufacturing Plan',
-        tags: [18, 49, 33],
+        tags: [9, 2, 57],
         type: 'pdf',
         owner: 'Paul Carter',
         size: 23.45,
@@ -588,7 +588,7 @@ export const files: ExplorerFile[] = [
     {
         id: 19,
         name: 'Factory Layout',
-        tags: [19, 50, 20],
+        tags: [24, 36, 61],
         type: 'jpg',
         owner: 'Quinn Mitchell',
         size: 34.56,
@@ -596,7 +596,7 @@ export const files: ExplorerFile[] = [
     {
         id: 20,
         name: 'Market Research',
-        tags: [20, 51],
+        tags: [50, 55, 28],
         type: 'pdf',
         owner: 'Rachel Perez',
         size: 45.67,
@@ -604,7 +604,7 @@ export const files: ExplorerFile[] = [
     {
         id: 21,
         name: 'Competitor Analysis',
-        tags: [21, 52, 44],
+        tags: [10, 9, 39],
         type: 'jpg',
         owner: 'Sam Roberts',
         size: 11.22,
@@ -612,7 +612,7 @@ export const files: ExplorerFile[] = [
     {
         id: 22,
         name: 'Annual Report',
-        tags: [22, 53, 31],
+        tags: [58, 11, 7],
         type: 'png',
         owner: 'Tina Turner',
         size: 22.33,
@@ -620,7 +620,7 @@ export const files: ExplorerFile[] = [
     {
         id: 23,
         name: 'Employee Bonuses',
-        tags: [23, 54, 12],
+        tags: [43, 54, 37],
         type: 'png',
         owner: 'Uma Thompson',
         size: 33.44,
@@ -628,7 +628,7 @@ export const files: ExplorerFile[] = [
     {
         id: 24,
         name: 'Annual Revenue',
-        tags: [24, 55, 10],
+        tags: [51, 25, 31],
         type: 'png',
         owner: 'Victor White',
         size: 44.55,
@@ -636,7 +636,7 @@ export const files: ExplorerFile[] = [
     {
         id: 25,
         name: 'Helpful Tips',
-        tags: [25, 56, 11],
+        tags: [15, 46, 58],
         type: 'png',
         owner: 'Wendy Hall',
         size: 12.34,
@@ -644,7 +644,7 @@ export const files: ExplorerFile[] = [
     {
         id: 26,
         name: 'Employee Image',
-        tags: [26, 57, 35],
+        tags: [4, 31, 15],
         type: 'jpg',
         owner: 'Xander Allen',
         size: 23.45,
@@ -652,7 +652,7 @@ export const files: ExplorerFile[] = [
     {
         id: 27,
         name: 'Company Trip',
-        tags: [27, 58, 9],
+        tags: [49, 21, 2],
         type: 'jpg',
         owner: 'Yara Nelson',
         size: 34.56,
@@ -660,7 +660,7 @@ export const files: ExplorerFile[] = [
     {
         id: 28,
         name: 'Career Path',
-        tags: [28, 59, 2],
+        tags: [23, 3, 23],
         type: 'pdf',
         owner: 'Zachary Hill',
         size: 45.67,
@@ -668,7 +668,7 @@ export const files: ExplorerFile[] = [
     {
         id: 29,
         name: 'Warehouse Contract',
-        tags: [29, 60, 44],
+        tags: [26, 2, 15],
         type: 'png',
         owner: 'Aaron Lee',
         size: 11.22,
@@ -676,7 +676,7 @@ export const files: ExplorerFile[] = [
     {
         id: 30,
         name: 'Company Equipment',
-        tags: [30, 61, 5],
+        tags: [43, 17, 26],
         type: 'pdf',
         owner: 'Bella Kim',
         size: 22.33,
@@ -684,7 +684,7 @@ export const files: ExplorerFile[] = [
     {
         id: 31,
         name: 'Business Plan',
-        tags: [31, 62, 17],
+        tags: [19, 35, 13],
         type: 'jpg',
         owner: 'Chris Moore',
         size: 33.44,
@@ -692,7 +692,7 @@ export const files: ExplorerFile[] = [
     {
         id: 32,
         name: 'General Info',
-        tags: [1, 32, 18],
+        tags: [53, 16, 18],
         type: 'pdf',
         owner: 'Dana Clark',
         size: 44.55,
@@ -700,7 +700,7 @@ export const files: ExplorerFile[] = [
     {
         id: 33,
         name: 'Customer Feedback',
-        tags: [2, 33, 19],
+        tags: [7, 51, 51],
         type: 'pdf',
         owner: 'Eli Martinez',
         size: 12.34,
@@ -708,7 +708,7 @@ export const files: ExplorerFile[] = [
     {
         id: 34,
         name: 'Sales Data',
-        tags: [3, 34, 55],
+        tags: [29, 21, 42],
         type: 'pdf',
         owner: 'Faye Anderson',
         size: 23.45,
@@ -716,7 +716,7 @@ export const files: ExplorerFile[] = [
     {
         id: 35,
         name: 'Employee Contracts',
-        tags: [4, 35, 26],
+        tags: [5, 7, 34],
         type: 'png',
         owner: 'Gabe Thomas',
         size: 34.56,
@@ -724,7 +724,7 @@ export const files: ExplorerFile[] = [
     {
         id: 36,
         name: 'SEA Trends',
-        tags: [5, 36, 32],
+        tags: [14, 45, 40],
         type: 'pdf',
         owner: 'Holly Jackson',
         size: 45.67,
@@ -732,7 +732,7 @@ export const files: ExplorerFile[] = [
     {
         id: 37,
         name: 'Brand Assets',
-        tags: [6, 37, 14],
+        tags: [24, 21, 17],
         type: 'pdf',
         owner: 'Ian Harris',
         size: 11.22,
@@ -740,7 +740,7 @@ export const files: ExplorerFile[] = [
     {
         id: 38,
         name: 'Partner Relations',
-        tags: [7, 38, 52],
+        tags: [55, 36, 37],
         type: 'pdf',
         owner: 'Jill Martinez',
         size: 22.33,
@@ -748,7 +748,7 @@ export const files: ExplorerFile[] = [
     {
         id: 39,
         name: 'Marketing Strategy',
-        tags: [8, 39, 58],
+        tags: [35, 46, 16],
         type: 'png',
         owner: 'Kyle Robinson',
         size: 33.44,
@@ -756,7 +756,7 @@ export const files: ExplorerFile[] = [
     {
         id: 40,
         name: 'Presentation Slides',
-        tags: [9, 40, 37],
+        tags: [41, 24, 59],
         type: 'jpg',
         owner: 'Lara Scott',
         size: 44.55,
@@ -764,7 +764,7 @@ export const files: ExplorerFile[] = [
     {
         id: 41,
         name: 'Expo 2023',
-        tags: [10, 41, 22],
+        tags: [3, 17, 47],
         type: 'jpg',
         owner: 'Mona Lisa',
         size: 12.34,
@@ -772,7 +772,7 @@ export const files: ExplorerFile[] = [
     {
         id: 42,
         name: 'User Manual',
-        tags: [11, 42, 23],
+        tags: [26, 48, 29],
         type: 'pdf',
         owner: 'Nina Brown',
         size: 23.45,
@@ -780,7 +780,7 @@ export const files: ExplorerFile[] = [
     {
         id: 43,
         name: 'Handbook 2023',
-        tags: [12, 43, 24],
+        tags: [30, 15, 24],
         type: 'pdf',
         owner: 'Oscar Green',
         size: 34.56,
@@ -788,7 +788,7 @@ export const files: ExplorerFile[] = [
     {
         id: 44,
         name: 'Q1 Financials',
-        tags: [13, 44, 25],
+        tags: [4, 27, 11],
         type: 'png',
         owner: 'Paul White',
         size: 45.67,
@@ -796,7 +796,7 @@ export const files: ExplorerFile[] = [
     {
         id: 45,
         name: 'Project Requirements',
-        tags: [14, 45, 26],
+        tags: [28, 39, 2],
         type: 'jpg',
         owner: 'Quincy Black',
         size: 11.22,
@@ -804,7 +804,7 @@ export const files: ExplorerFile[] = [
     {
         id: 46,
         name: 'Client List',
-        tags: [15, 46, 27],
+        tags: [53, 27, 32],
         type: 'png',
         owner: 'Rachel Blue',
         size: 22.33,
@@ -812,7 +812,7 @@ export const files: ExplorerFile[] = [
     {
         id: 47,
         name: 'Logistics Plan',
-        tags: [16, 47, 28],
+        tags: [9, 52, 57],
         type: 'jpg',
         owner: 'Sam Yellow',
         size: 33.44,
@@ -820,7 +820,7 @@ export const files: ExplorerFile[] = [
     {
         id: 48,
         name: 'Vendor Contracts',
-        tags: [17, 48, 29],
+        tags: [11, 18, 49],
         type: 'pdf',
         owner: 'Tina Red',
         size: 44.55,
@@ -828,7 +828,7 @@ export const files: ExplorerFile[] = [
     {
         id: 49,
         name: 'Manufacturing Plan',
-        tags: [18, 49, 30],
+        tags: [27, 37, 38],
         type: 'pdf',
         owner: 'Uma Purple',
         size: 12.34,
@@ -836,7 +836,7 @@ export const files: ExplorerFile[] = [
     {
         id: 50,
         name: 'Factory Layout',
-        tags: [19, 50, 31],
+        tags: [4, 31, 18],
         type: 'jpg',
         owner: 'Victor Orange',
         size: 23.45,
@@ -844,7 +844,7 @@ export const files: ExplorerFile[] = [
     {
         id: 51,
         name: 'Market Research 2023',
-        tags: [20, 51, 32],
+        tags: [1, 10, 21],
         type: 'jpg',
         owner: 'Wendy Pink',
         size: 34.56,
@@ -852,7 +852,7 @@ export const files: ExplorerFile[] = [
     {
         id: 52,
         name: 'Competitor Analysis',
-        tags: [21, 52, 33],
+        tags: [21, 52, 35],
         type: 'jpg',
         owner: 'Xander Gray',
         size: 45.67,
@@ -860,7 +860,7 @@ export const files: ExplorerFile[] = [
     {
         id: 53,
         name: 'Annual Report 2022',
-        tags: [22, 53, 34],
+        tags: [3, 21, 46],
         type: 'png',
         owner: 'Yara Cyan',
         size: 11.22,
@@ -868,7 +868,7 @@ export const files: ExplorerFile[] = [
     {
         id: 54,
         name: 'Employee Bonuses',
-        tags: [23, 54, 35],
+        tags: [40, 20, 6],
         type: 'jpg',
         owner: 'Zachary Magenta',
         size: 22.33,
@@ -876,7 +876,7 @@ export const files: ExplorerFile[] = [
     {
         id: 55,
         name: 'Revenue 2022',
-        tags: [24, 55, 36],
+        tags: [47, 61, 56],
         type: 'jpg',
         owner: 'Aaron Indigo',
         size: 33.44,
@@ -884,7 +884,7 @@ export const files: ExplorerFile[] = [
     {
         id: 56,
         name: 'Helpful Tips',
-        tags: [25, 56, 37],
+        tags: [18, 59, 19],
         type: 'pdf',
         owner: 'Bella Violet',
         size: 44.55,
@@ -892,7 +892,7 @@ export const files: ExplorerFile[] = [
     {
         id: 57,
         name: 'Employee Photos',
-        tags: [26, 57, 38],
+        tags: [40, 39, 46],
         type: 'jpg',
         owner: 'Chris Brown',
         size: 12.34,
@@ -900,7 +900,7 @@ export const files: ExplorerFile[] = [
     {
         id: 58,
         name: 'Company Trip 2023',
-        tags: [27, 58, 39],
+        tags: [22, 45, 6],
         type: 'jpg',
         owner: 'Dana Green',
         size: 23.45,
@@ -908,7 +908,7 @@ export const files: ExplorerFile[] = [
     {
         id: 59,
         name: 'Career Development',
-        tags: [28, 59, 40],
+        tags: [5, 28, 46],
         type: 'pdf',
         owner: 'Eli Blue',
         size: 34.56,
@@ -916,7 +916,7 @@ export const files: ExplorerFile[] = [
     {
         id: 60,
         name: 'Warehouse Agreement',
-        tags: [29, 60, 41],
+        tags: [7, 18, 51],
         type: 'png',
         owner: 'Faye Red',
         size: 45.67,
@@ -924,7 +924,7 @@ export const files: ExplorerFile[] = [
     {
         id: 61,
         name: 'Equipment Inventory',
-        tags: [30, 61, 42],
+        tags: [10, 49, 2],
         type: 'pdf',
         owner: 'Gabe Yellow',
         size: 11.22,
@@ -932,7 +932,7 @@ export const files: ExplorerFile[] = [
     {
         id: 62,
         name: 'Tech Plan',
-        tags: [31, 62, 43],
+        tags: [42, 48, 31],
         type: 'jpg',
         owner: 'Holly Purple',
         size: 22.33,
@@ -940,7 +940,7 @@ export const files: ExplorerFile[] = [
     {
         id: 63,
         name: 'General Document',
-        tags: [1, 32, 44],
+        tags: [4, 50, 1],
         type: 'jpg',
         owner: 'Ian Orange',
         size: 33.44,
@@ -948,7 +948,7 @@ export const files: ExplorerFile[] = [
     {
         id: 64,
         name: 'Customer Insights',
-        tags: [2, 33, 45],
+        tags: [17, 49, 54],
         type: 'jpg',
         owner: 'Jill Pink',
         size: 44.55,
@@ -956,7 +956,7 @@ export const files: ExplorerFile[] = [
     {
         id: 65,
         name: 'Sales Report',
-        tags: [3, 34, 46],
+        tags: [45, 40, 60],
         type: 'png',
         owner: 'Kyle Gray',
         size: 12.34,
@@ -964,7 +964,7 @@ export const files: ExplorerFile[] = [
     {
         id: 66,
         name: 'Employee Records',
-        tags: [4, 35, 47],
+        tags: [3, 16, 1],
         type: 'png',
         owner: 'Lara Cyan',
         size: 23.45,
@@ -972,7 +972,7 @@ export const files: ExplorerFile[] = [
     {
         id: 67,
         name: 'Market Trends',
-        tags: [5, 36, 48],
+        tags: [5, 56, 56],
         type: 'pdf',
         owner: 'Mona Magenta',
         size: 34.56,
@@ -980,7 +980,7 @@ export const files: ExplorerFile[] = [
     {
         id: 68,
         name: 'Brand Guidelines 2023',
-        tags: [6, 37, 49],
+        tags: [54, 53, 44],
         type: 'pdf',
         owner: 'Nina Indigo',
         size: 45.67,
@@ -988,7 +988,7 @@ export const files: ExplorerFile[] = [
     {
         id: 69,
         name: 'Partner Gifts 2023',
-        tags: [7, 38, 50],
+        tags: [48, 38, 1],
         type: 'jpg',
         owner: 'Oscar Blue',
         size: 11.22,
@@ -996,7 +996,7 @@ export const files: ExplorerFile[] = [
     {
         id: 70,
         name: 'Marketing Plan Q2',
-        tags: [8, 39, 51],
+        tags: [32, 5, 52],
         type: 'pdf',
         owner: 'Paul Green',
         size: 22.33,
@@ -1004,7 +1004,7 @@ export const files: ExplorerFile[] = [
     {
         id: 71,
         name: 'Pitch Deck 2023',
-        tags: [9, 40, 52],
+        tags: [3, 44, 50],
         type: 'pdf',
         owner: 'Quincy Red',
         size: 33.44,
@@ -1012,7 +1012,7 @@ export const files: ExplorerFile[] = [
     {
         id: 72,
         name: 'Expo 2024',
-        tags: [10, 41, 53],
+        tags: [22, 30, 26],
         type: 'jpg',
         owner: 'Rachel Yellow',
         size: 44.55,
@@ -1020,7 +1020,7 @@ export const files: ExplorerFile[] = [
     {
         id: 73,
         name: 'User Instructions 2023',
-        tags: [11, 42, 54],
+        tags: [45, 47, 31],
         type: 'pdf',
         owner: 'Sam Purple',
         size: 12.34,
@@ -1028,7 +1028,7 @@ export const files: ExplorerFile[] = [
     {
         id: 74,
         name: 'Employee Guide 2023',
-        tags: [12, 43, 55],
+        tags: [10, 53, 3],
         type: 'pdf',
         owner: 'Tina Orange',
         size: 23.45,
@@ -1036,7 +1036,7 @@ export const files: ExplorerFile[] = [
     {
         id: 75,
         name: 'Financial Overview Q2',
-        tags: [13, 44, 56],
+        tags: [7, 6, 31],
         type: 'png',
         owner: 'Uma Pink',
         size: 34.56,
@@ -1044,7 +1044,7 @@ export const files: ExplorerFile[] = [
     {
         id: 76,
         name: 'Project Specs 2023',
-        tags: [14, 45, 57],
+        tags: [54, 53, 33],
         type: 'jpg',
         owner: 'Victor Gray',
         size: 45.67,
@@ -1052,7 +1052,7 @@ export const files: ExplorerFile[] = [
     {
         id: 77,
         name: 'Client Contracts 2023',
-        tags: [15, 46, 58],
+        tags: [40, 47, 19],
         type: 'png',
         owner: 'Wendy Cyan',
         size: 11.22,
@@ -1060,7 +1060,7 @@ export const files: ExplorerFile[] = [
     {
         id: 78,
         name: 'Logistics Schedule Q2',
-        tags: [16, 47, 59],
+        tags: [26, 39, 16],
         type: 'jpg',
         owner: 'Xander Magenta',
         size: 22.33,
@@ -1068,7 +1068,7 @@ export const files: ExplorerFile[] = [
     {
         id: 79,
         name: 'Vendor Agreements 2023',
-        tags: [17, 48, 60],
+        tags: [5, 31, 15],
         type: 'pdf',
         owner: 'Yara Indigo',
         size: 33.44,
@@ -1076,7 +1076,7 @@ export const files: ExplorerFile[] = [
     {
         id: 80,
         name: 'Manufacturing Schedule Q2',
-        tags: [18, 49, 61],
+        tags: [17, 28, 19],
         type: 'pdf',
         owner: 'Zachary Violet',
         size: 44.55,
@@ -1084,7 +1084,7 @@ export const files: ExplorerFile[] = [
     {
         id: 81,
         name: 'Factory Operations 2023',
-        tags: [19, 50, 62],
+        tags: [49, 21, 43],
         type: 'jpg',
         owner: 'Aaron Brown',
         size: 12.34,
@@ -1092,7 +1092,7 @@ export const files: ExplorerFile[] = [
     {
         id: 82,
         name: 'Market Insights Q2',
-        tags: [20, 51, 1],
+        tags: [20, 44, 47],
         type: 'jpg',
         owner: 'Bella Green',
         size: 23.45,
@@ -1100,7 +1100,7 @@ export const files: ExplorerFile[] = [
     {
         id: 83,
         name: 'Competitor Report Q2',
-        tags: [21, 52, 2],
+        tags: [30, 13, 18],
         type: 'jpg',
         owner: 'Chris Blue',
         size: 34.56,
@@ -1108,7 +1108,7 @@ export const files: ExplorerFile[] = [
     {
         id: 84,
         name: 'Annual Summary 2023',
-        tags: [22, 53, 3],
+        tags: [54, 5, 61],
         type: 'png',
         owner: 'Dana Red',
         size: 45.67,
@@ -1116,7 +1116,7 @@ export const files: ExplorerFile[] = [
     {
         id: 85,
         name: 'Employee Rewards Q2',
-        tags: [23, 54, 4],
+        tags: [40, 26, 40],
         type: 'jpg',
         owner: 'Eli Yellow',
         size: 11.22,
@@ -1124,7 +1124,7 @@ export const files: ExplorerFile[] = [
     {
         id: 86,
         name: 'Revenue Breakdown Q2',
-        tags: [24, 55, 5],
+        tags: [35, 50, 56],
         type: 'jpg',
         owner: 'Faye Purple',
         size: 22.33,
@@ -1132,7 +1132,7 @@ export const files: ExplorerFile[] = [
     {
         id: 87,
         name: 'Helpful Resources Q2',
-        tags: [25, 56, 6],
+        tags: [40, 12, 50],
         type: 'pdf',
         owner: 'Gabe Orange',
         size: 33.44,
@@ -1140,7 +1140,7 @@ export const files: ExplorerFile[] = [
     {
         id: 88,
         name: 'Staff Photos Q2',
-        tags: [26, 57, 7],
+        tags: [39, 33, 51],
         type: 'jpg',
         owner: 'Holly Pink',
         size: 44.55,
