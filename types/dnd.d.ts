@@ -2,10 +2,10 @@ import type { TagClass } from './explorer'
 
 namespace Dnd {
     const DndTypes = {
-        TagClassContainer = 'tag-class-container',
-        TagClassFromContainer = 'tag-class-from-container',
-        TagClassFromFilter = 'tag-class-from-filter',
-        TagClassArea = 'tag-class-area',
+        TagClassContainer: 'tag-class-container',
+        TagClassFromContainer: 'tag-class-from-container',
+        TagClassFromFilter: 'tag-class-from-filter',
+        TagClassArea: 'tag-class-area',
     }
     type DndType = keyof typeof DndTypes
 

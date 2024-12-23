@@ -6,15 +6,10 @@ import { getAllFilesByTags } from '@/lib/explorer'
 
 const { String: S } = Utils
 
-const TagFilter = ({
-    tag,
-    onSelected: handleOnSelected,
-    onUnselected: handleOnUnselected,
-}: TagFilterProps) => {
+const TagFilter = ({ tag, onSelected: handleOnSelected, onUnselected: handleOnUnselected }: TagFilterProps) => {
     const { tagClassAreas } = useContext(TagsContext)
 
-    const isSelected =
-        tagClassAreas.find((t) => t?.tagId === tag.id) !== undefined
+    const isSelected = tagClassAreas.find((t) => t?.tagId === tag.id) !== undefined
 
     const files = getAllFilesByTags([tag.id])
 
@@ -39,13 +34,8 @@ const TagFilter = ({
                 'justify-between',
                 'items-center',
             )}
-            onClick={handleOnClicked}
-        >
-            <div>
-                {tag.name.length > 28
-                    ? S.getShortName(tag.name, 28).concat('...')
-                    : tag.name}
-            </div>
+            onClick={handleOnClicked}>
+            <div>{tag.name.length > 28 ? S.getShortName(tag.name, 28).concat('...') : tag.name}</div>
             <div className="text-12">({files.length})</div>
         </div>
     )

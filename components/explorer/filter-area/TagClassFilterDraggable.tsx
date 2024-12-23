@@ -7,11 +7,7 @@ import React from 'react'
 
 const { String: S } = Utils
 
-const TagClassFilterDraggable = ({
-    tagClass,
-    tagAreaId,
-    onRemoveClicked,
-}: TagClassFilterDraggableProps) => {
+const TagClassFilterDraggable = ({ tagClass, tagAreaId, onRemoveClicked }: TagClassFilterDraggableProps) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
         id: `tag-class-${tagClass.id}`,
         data: {
@@ -28,24 +24,14 @@ const TagClassFilterDraggable = ({
           }
         : undefined
 
-    const tagClassName =
-        tagClass.name.length > 28
-            ? S.getShortName(tagClass.name, 28).concat('...')
-            : tagClass.name
+    const tagClassName = tagClass.name.length > 28 ? S.getShortName(tagClass.name, 28).concat('...') : tagClass.name
 
     return (
-        <div
-            ref={setNodeRef}
-            style={style}
-            className="flex justify-between bg-gray-200 px-3 py-2 rounded-md "
-        >
+        <div ref={setNodeRef} style={style} className="flex justify-between bg-gray-200 px-3 py-2 rounded-md ">
             <div {...attributes} {...listeners} className="w-full">
                 {tagClassName}
             </div>
-            <div
-                className="flex justify-center w-8 cursor-pointer"
-                onClick={onRemoveClicked}
-            >
+            <div className="flex justify-center w-8 cursor-pointer" onClick={onRemoveClicked}>
                 <Image src="/icons/cross.svg" alt="" width={12} height={12} />
             </div>
         </div>

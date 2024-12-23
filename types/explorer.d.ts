@@ -1,5 +1,3 @@
-import type exp from 'constants'
-
 export interface TagClass {
     id: number
     name: string

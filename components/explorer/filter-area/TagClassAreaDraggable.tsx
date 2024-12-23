@@ -8,10 +8,7 @@ import type { Dnd } from '@/types/dnd'
 import { TagsDispatchContext } from '@/contexts/TagsContext'
 import TagFilter from './TagFilter'
 
-const TagClassAreaDraggable = ({
-    id,
-    tagClassId,
-}: TagClassAreaDraggableProps) => {
+const TagClassAreaDraggable = ({ id, tagClassId }: TagClassAreaDraggableProps) => {
     const tagClass = getTagClassById(tagClassId)!
     const tags = getAllTagsByTagClass(tagClassId)!
 
@@ -64,26 +61,12 @@ const TagClassAreaDraggable = ({
     }
 
     return (
-        <div
-            ref={setDraggableNodeRef}
-            className="flex h-full bg-white rounded-lg"
-            style={style}
-        >
-            <div
-                ref={setDroppableNodeRef}
-                className="flex flex-1 flex-col mx-2 my-4 gap-3"
-            >
+        <div ref={setDraggableNodeRef} className="flex h-full bg-white rounded-lg" style={style}>
+            <div ref={setDroppableNodeRef} className="flex flex-1 flex-col mx-2 my-4 gap-3">
                 <div className="flex flex-col">
                     <div className="flex flex-row justify-between items-center mb-5">
                         <p className="text-gray-500 text-14">Tag class</p>
-                        <Image
-                            src="/icons/dots.svg"
-                            alt=""
-                            width={16}
-                            height={16}
-                            {...listeners}
-                            {...attributes}
-                        />
+                        <Image src="/icons/dots.svg" alt="" width={16} height={16} {...listeners} {...attributes} />
                     </div>
                     <TagClassFilterDraggable
                         tagClass={tagClass}
@@ -91,16 +74,11 @@ const TagClassAreaDraggable = ({
                         onRemoveClicked={onTagClassRemoveClicked}
                     />
                 </div>
-                <div className="h-[1px] bg-gray-300"></div>
+                <div className="h-[1px] bg-gray-300" />
                 <div className="flex flex-col gap-2">
                     <p className="text-gray-500 text-14 mb-3">Tag(s)</p>
                     {tags.map((tag) => (
-                        <TagFilter
-                            tag={tag}
-                            key={tag.id}
-                            onSelected={onTagSelected}
-                            onUnselected={onTagUnselected}
-                        />
+                        <TagFilter tag={tag} key={tag.id} onSelected={onTagSelected} onUnselected={onTagUnselected} />
                     ))}
                 </div>
             </div>

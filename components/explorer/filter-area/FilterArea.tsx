@@ -6,28 +6,18 @@ import TagClassArea from './TagClassArea'
 const FilterArea = () => {
     const { tagClassAreas } = useContext(TagsContext)
 
-    const notEmptyTagAreas = tagClassAreas.filter(
-        (tagArea) => tagArea !== undefined,
-    )
+    const notEmptyTagAreas = tagClassAreas.filter((tagArea) => tagArea !== undefined)
     return (
         <section className="flex flex-col gap-2 h-full">
             <h2 className="text-gray-600 font-medium">Filter area</h2>
             <div className="h-full flex flex-row gap-5">
                 {notEmptyTagAreas.map((tagArea, index) => {
-                    return (
-                        <TagClassArea
-                            key={index}
-                            id={index}
-                            tagClassId={tagArea.tagClassId}
-                        />
-                    )
+                    return <TagClassArea key={index} id={index} tagClassId={tagArea.tagClassId} />
                 })}
                 {notEmptyTagAreas.length < 3 && (
                     <TagClassArea
                         id={notEmptyTagAreas.length}
-                        tagClassId={
-                            tagClassAreas[notEmptyTagAreas.length]?.tagClassId
-                        }
+                        tagClassId={tagClassAreas[notEmptyTagAreas.length]?.tagClassId}
                     />
                 )}
 

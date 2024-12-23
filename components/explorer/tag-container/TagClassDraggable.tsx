@@ -20,17 +20,8 @@ const TagClassDraggable = ({ tagClass }: TagClassDraggableProps) => {
         : undefined
 
     return (
-        <div
-            ref={setNodeRef}
-            className="flex flex-wrap"
-            style={style}
-            {...attributes}
-            {...listeners}
-        >
-            <div
-                key={tagClass.id}
-                className="bg-gray-200  px-3 py-2 rounded-md"
-            >
+        <div ref={setNodeRef} className="flex flex-wrap" style={style} {...attributes} {...listeners}>
+            <div key={tagClass.id} className="bg-gray-200  px-3 py-2 rounded-md">
                 {tagClass.name}
             </div>
         </div>

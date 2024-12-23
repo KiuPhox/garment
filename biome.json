@@ -1,0 +1,102 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "vcs": {
+        "enabled": false,
+        "clientKind": "git",
+        "useIgnoreFile": false
+    },
+    "files": {
+        "ignoreUnknown": false,
+        "ignore": []
+    },
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "lineEnding": "lf",
+        "indentWidth": 4,
+        "lineWidth": 120,
+        "formatWithErrors": false
+    },
+    "organizeImports": {
+        "enabled": true
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "complexity": {
+                "noForEach": "warn",
+                "noThisInStatic": "off",
+                "useArrowFunction": "info",
+                "noStaticOnlyClass": "off",
+                "useLiteralKeys": "info",
+                "noBannedTypes": {
+                    "fix": "safe",
+                    "level": "error"
+                }
+            },
+            "suspicious": {
+                "noExplicitAny": "info",
+                "noDoubleEquals": {
+                    "options": {
+                        "ignoreNull": true
+                    },
+                    "fix": "safe",
+                    "level": "error"
+                },
+                "noGlobalIsNan": "off",
+                "noGlobalAssign": "warn",
+                "noArrayIndexKey": "warn"
+            },
+            "style": {
+                "noVar": "warn",
+                "useTemplate": {
+                    "fix": "safe",
+                    "level": "warn"
+                },
+                "noUselessElse": {
+                    "fix": "safe",
+                    "level": "warn"
+                },
+                "useSingleVarDeclarator": {
+                    "fix": "safe",
+                    "level": "error"
+                },
+                "noNonNullAssertion": "info",
+                "noInferrableTypes": "off",
+                "noUnusedTemplateLiteral": {
+                    "fix": "safe",
+                    "level": "warn"
+                },
+                "useExponentiationOperator": "info",
+                "useNumberNamespace": "off"
+            },
+            "performance": {
+                "noDelete": "info"
+            },
+            "correctness": {
+                "noUnreachable": "info"
+            },
+            "a11y": {
+                "useKeyWithClickEvents": "off"
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "arrowParentheses": "always",
+            "bracketSameLine": true,
+            "bracketSpacing": true,
+            "quoteStyle": "single",
+            "semicolons": "asNeeded",
+            "trailingCommas": "all"
+        }
+    },
+    "json": {
+        "parser": {
+            "allowComments": true
+        },
+        "formatter": {
+            "trailingCommas": "none"
+        }
+    }
+}
