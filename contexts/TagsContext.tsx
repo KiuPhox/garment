@@ -28,9 +28,6 @@ export const TagsProvider = ({ children }: any) => {
     const handleDragEnd = (activeData: Dnd.DragEndData, overData: Dnd.DragEndData) => {
         if (activeData.type === 'TagClassFromContainer' && overData.type === 'TagClassArea') {
             const tagClassId = (activeData as Dnd.TagClassData).tagClass.id
-            const tagClassArea = (overData as Dnd.TagClassAreaData).tagClass
-            if (tagClassArea) return
-
             const tagClassAreaId = (overData as Dnd.TagClassAreaData).tagAreaId
 
             addTagClassToArea(tagClassId, tagClassAreaId)
