@@ -61,7 +61,7 @@ const TagClassAreaDraggable = ({ id, tagClassId }: TagClassAreaDraggableProps) =
     }
 
     return (
-        <div ref={setDraggableNodeRef} className="flex h-full bg-white rounded-lg" style={style}>
+        <div ref={setDraggableNodeRef} className="flex h-full bg-[#353a46] rounded-lg" style={style}>
             <div ref={setDroppableNodeRef} className="flex flex-1 flex-col mx-2 my-4 gap-3">
                 <div className="flex flex-col">
                     <div className="flex flex-row justify-between items-center mb-5">

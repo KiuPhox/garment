@@ -16,7 +16,7 @@ const TagClassAreaDroppable = ({ id }: TagClassAreaDroppableProps) => {
     return (
         <div
             ref={setNodeRef}
-            className="flex h-full items-center justify-center rounded-md bg-gray-100 border-2 border-gray-300 border-dashed">
+            className="flex h-full items-center justify-center rounded-md bg-[#353a46] border-2 border-gray-300 border-dashed">
             <p className="text-gray-400">
                 Drag and drop
                 <br />

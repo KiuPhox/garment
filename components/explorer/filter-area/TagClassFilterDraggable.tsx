@@ -27,7 +27,7 @@ const TagClassFilterDraggable = ({ tagClass, tagAreaId, onRemoveClicked }: TagCl
     const tagClassName = tagClass.name.length > 28 ? S.getShortName(tagClass.name, 28).concat('...') : tagClass.name
 
     return (
-        <div ref={setNodeRef} style={style} className="flex justify-between bg-gray-200 px-3 py-2 rounded-md ">
+        <div ref={setNodeRef} style={style} className="flex justify-between bg-[#404451] px-3 py-2 rounded-md ">
             <div {...attributes} {...listeners} className="w-full">
                 {tagClassName}
             </div>

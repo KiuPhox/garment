@@ -12,7 +12,7 @@ const FileContainer = ({ file }: FileContainerProps) => {
 	const color = FileColor[file.type] || '#f2b144'
 
 	return (
-		<div className="flex bg-neutral-100 rounded-md gap-2 pr-4">
+		<div className="flex bg-[#414451] rounded-md gap-2 pr-4">
 			<div className="w-2 rounded-l-md" style={{ backgroundColor: color }} />
 			<div className="flex justify-between flex-1 py-2">
 				<div className="flex gap-4">

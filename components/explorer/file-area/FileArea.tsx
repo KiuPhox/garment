@@ -18,7 +18,7 @@ const FileArea = () => {
 	}, [tagClassAreas])
 
 	return (
-		<div className="bg-white rounded-2xl flex-1">
+		<div className="bg-[#353a46] rounded-2xl flex-1">
 			{files.length === 0 ? (
 				<FileAreaDroppable />
 			) : (

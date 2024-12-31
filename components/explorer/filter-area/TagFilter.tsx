@@ -24,8 +24,9 @@ const TagFilter = ({ tag, onSelected: handleOnSelected, onUnselected: handleOnUn
     return (
         <div
             className={S.className(
-                { 'bg-gray-200': !isSelected },
-                { 'bg-orange-200': isSelected },
+                { 'bg-[#404451]': !isSelected },
+                { 'bg-[#2b3541]': isSelected },
+                {'text-[#67bdd5]': isSelected},
                 'px-3',
                 'py-2',
                 'rounded-md',

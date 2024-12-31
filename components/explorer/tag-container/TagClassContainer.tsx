@@ -36,7 +36,7 @@ const TagClassContainer = () => {
                     onClick={handleExpandClick}
                 />
             </div>
-            <div className={cn('bg-white', 'w-full', 'h-full', 'rounded-md', 'transition-all')}>
+            <div className={cn('bg-[#353a46]', 'w-full', 'h-full', 'rounded-md', 'transition-all')}>
                 <div className="flex flex-wrap gap-2 m-2">
                     {tagClasses.map((tagClass) => (
                         <TagClassDraggable key={tagClass.id} tagClass={tagClass} />
