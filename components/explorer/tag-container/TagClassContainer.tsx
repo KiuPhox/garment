@@ -2,7 +2,6 @@
 
 import { useContext, useState } from 'react'
 import Image from 'next/image'
-import { cn } from '@/lib/utils'
 import TagClassDraggable from './TagClassDraggable'
 import { useDroppable } from '@dnd-kit/core'
 import type { Dnd } from '@/types/dnd'
@@ -36,7 +35,7 @@ const TagClassContainer = () => {
                     onClick={handleExpandClick}
                 />
             </div>
-            <div className={cn('bg-[#353a46]', 'w-full', 'h-full', 'rounded-md', 'transition-all')}>
+            <div className="bg-[#353a46] w-full h-full rounded-md transition-all">
                 <div className="flex flex-wrap gap-2 m-2">
                     {tagClasses.map((tagClass) => (
                         <TagClassDraggable key={tagClass.id} tagClass={tagClass} />
