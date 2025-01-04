@@ -1,13 +1,5 @@
-export interface TagClass {
-    id: number
-    name: string
-}
-
-export interface Tag {
-    id: number
-    tagClassId: number
-    name: string
-}
+import type { ExplorerFileType } from '@/lib/models/file.model'
+import type { KeywordType } from '@/lib/models/keyword.model'
 
 export interface ExplorerFile {
     id: number
@@ -18,28 +10,28 @@ export interface ExplorerFile {
     size: number
 }
 
-export interface TagClassAreaProps {
+export interface FilterAreaProps {
     id: number
-    tagClassId?: number
-    tagId?: number
+    keyword?: KeywordType
+    tagId?: string
 }
 
-export interface TagClassAreaDraggableProps {
+export interface FilterAreaDraggableProps {
     id: number
-    tagClassId: number
-    tagId?: number
+    keyword: KeywordType
+    tagId?: string
 }
 
-export interface TagClassDraggableProps {
-    tagClass: TagClass
+export interface KeywordDraggableProps {
+    keyword: KeywordType
 }
 
-export type TagClassFilterDraggableProps = {
-    tagAreaId: number
+export type KeywordFilterDraggableProps = {
+    filterAreaId: number
     onRemoveClicked: () => void
-} & TagClassDraggableProps
+} & KeywordDraggableProps
 
-export interface TagClassAreaDroppableProps {
+export interface FilterAreaDroppableProps {
     id: number
 }
 
@@ -50,9 +42,9 @@ export interface TagFilterProps {
 }
 
 export interface FileAreaResultProps {
-    files: ExplorerFile[]
+    files: ExplorerFileType[]
 }
 
 export interface FileContainerProps {
-    file: ExplorerFile
+    file: ExplorerFileType
 }

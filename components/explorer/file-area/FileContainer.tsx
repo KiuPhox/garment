@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 
 const FileContainer = ({ file }: FileContainerProps) => {
-    const FileColor = {
+    const FileColor: { [key: string]: string } = {
         jpg: '#f2b144',
         pdf: '#f6567b',
         png: '#49a8df',

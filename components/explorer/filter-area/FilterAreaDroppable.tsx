@@ -1,16 +1,16 @@
 import type { Dnd } from '@/types/dnd'
-import type { TagClassAreaDroppableProps } from '@/types/explorer'
+import type { FilterAreaDroppableProps } from '@/types/explorer'
 import { useDroppable } from '@dnd-kit/core'
 import React from 'react'
 
-const TagClassAreaDroppable = ({ id }: TagClassAreaDroppableProps) => {
+const FilterAreaDroppable = ({ id }: FilterAreaDroppableProps) => {
     const { setNodeRef } = useDroppable({
         id: `tag-class-area-droppable-${id}`,
         data: {
-            tagAreaId: id,
-            tagClass: undefined,
-            type: 'TagClassArea',
-        } as Dnd.TagClassAreaData,
+            filterAreaId: id,
+            keyword: undefined,
+            type: 'FilterArea',
+        } as Dnd.FilterAreaData,
     })
 
     return (
@@ -26,4 +26,4 @@ const TagClassAreaDroppable = ({ id }: TagClassAreaDroppableProps) => {
     )
 }
 
-export default TagClassAreaDroppable
+export default FilterAreaDroppable

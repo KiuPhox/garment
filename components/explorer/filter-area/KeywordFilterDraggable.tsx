@@ -1,5 +1,5 @@
 import type { Dnd } from '@/types/dnd'
-import type { TagClassFilterDraggableProps } from '@/types/explorer'
+import type { KeywordFilterDraggableProps } from '@/types/explorer'
 import Utils from '@/utils'
 import { useDraggable } from '@dnd-kit/core'
 import Image from 'next/image'
@@ -7,14 +7,14 @@ import React from 'react'
 
 const { String: S } = Utils
 
-const TagClassFilterDraggable = ({ tagClass, tagAreaId, onRemoveClicked }: TagClassFilterDraggableProps) => {
+const KeywordFilterDraggable = ({ keyword, filterAreaId, onRemoveClicked }: KeywordFilterDraggableProps) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
-        id: `tag-class-${tagClass.id}`,
+        id: `keyword-${keyword.id}`,
         data: {
-            tagClass,
-            tagAreaId,
-            type: 'TagClassFromFilter',
-        } as Dnd.TagClassFilterData,
+            keyword,
+            filterAreaId,
+            type: 'KeywordFromFilter',
+        } as Dnd.KeywordFromFilterData,
     })
 
     const style = transform
@@ -24,12 +24,12 @@ const TagClassFilterDraggable = ({ tagClass, tagAreaId, onRemoveClicked }: TagCl
           }
         : undefined
 
-    const tagClassName = tagClass.name.length > 28 ? S.getShortName(tagClass.name, 28).concat('...') : tagClass.name
+    const keywordName = keyword.name.length > 28 ? S.getShortName(keyword.name, 28).concat('...') : keyword.name
 
     return (
         <div ref={setNodeRef} style={style} className="flex justify-between bg-[#404451] px-3 py-2 rounded-md ">
             <div {...attributes} {...listeners} className="w-full">
-                {tagClassName}
+                {keywordName}
             </div>
             <div className="flex justify-center w-8 cursor-pointer" onClick={onRemoveClicked}>
                 <Image src="/icons/cross.svg" alt="" width={12} height={12} />
@@ -38,4 +38,4 @@ const TagClassFilterDraggable = ({ tagClass, tagAreaId, onRemoveClicked }: TagCl
     )
 }
 
-export default TagClassFilterDraggable
+export default KeywordFilterDraggable

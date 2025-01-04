@@ -1,17 +1,17 @@
 import type { TagFilterProps } from '@/types/explorer'
 import React, { useContext } from 'react'
 import Utils from '@/utils'
-import TagsContext from '@/contexts/TagsContext'
-import { getAllFilesByTags } from '@/lib/explorer'
+import ExplorerContext from '@/contexts/ExplorerContext'
 
 const { String: S } = Utils
 
 const TagFilter = ({ tag, onSelected: handleOnSelected, onUnselected: handleOnUnselected }: TagFilterProps) => {
-    const { tagClassAreas } = useContext(TagsContext)
+    const { filterAreas } = useContext(ExplorerContext)
 
-    const isSelected = tagClassAreas.find((t) => t?.tagId === tag.id) !== undefined
+    const isSelected = filterAreas.find((filterArea) => filterArea?.tagId === tag.id) !== undefined
 
-    const files = getAllFilesByTags([tag.id])
+    //? TODO: get files from tag
+    const files = []
 
     const handleOnClicked = () => {
         if (isSelected) {

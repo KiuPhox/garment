@@ -1,22 +1,30 @@
-import { getAllTagsByTagClass, getTagClassById } from '@/lib/explorer'
 import { useDraggable, useDroppable } from '@dnd-kit/core'
 import Image from 'next/image'
-import React, { useContext } from 'react'
-import TagClassFilterDraggable from './TagClassFilterDraggable'
-import type { Tag, TagClassAreaDraggableProps } from '@/types/explorer'
+import React, { useContext, useEffect, useState } from 'react'
+import KeywordFilterDraggable from './KeywordFilterDraggable'
+import type { FilterAreaDraggableProps } from '@/types/explorer'
 import type { Dnd } from '@/types/dnd'
-import { TagsDispatchContext } from '@/contexts/TagsContext'
+import { ExplorerDispatchContext } from '@/contexts/ExplorerContext'
 import TagFilter from './TagFilter'
+import type { TagType } from '@/lib/models/tag.model'
+import { getTagsByKeyword } from '@/lib/actions/tag.actions'
 
-const TagClassAreaDraggable = ({ id, tagClassId }: TagClassAreaDraggableProps) => {
-    const tagClass = getTagClassById(tagClassId)!
-    const tags = getAllTagsByTagClass(tagClassId)!
+const FilterAreaDraggable = ({ id, keyword }: FilterAreaDraggableProps) => {
+    const [tags, setTags] = useState<TagType[]>([])
+
+    useEffect(() => {
+        const fetchTags = async () => {
+            const tags = await getTagsByKeyword(keyword)
+            setTags(tags)
+        }
+        fetchTags()
+    }, [keyword])
 
     const {
-        deleteTagClassFromArea: handleRemoveTagClass,
-        selectTagFromArea,
-        deleteTagFromArea,
-    } = useContext(TagsDispatchContext)
+        deleteKeywordFromFilterArea: handleRemoveKeyword,
+        selectTagFromFilterArea,
+        deleteTagFromFilterArea,
+    } = useContext(ExplorerDispatchContext)
 
     const {
         attributes,
@@ -24,21 +32,21 @@ const TagClassAreaDraggable = ({ id, tagClassId }: TagClassAreaDraggableProps) =
         setNodeRef: setDraggableNodeRef,
         transform,
     } = useDraggable({
-        id: `tag-class-area-draggable-${id}`,
+        id: `filter-area-draggable-${id}`,
         data: {
-            type: 'TagClassArea',
-            tagAreaId: id,
-            tagClass,
-        } as Dnd.TagClassAreaData,
+            type: 'FilterArea',
+            filterAreaId: id,
+            keyword,
+        } as Dnd.FilterAreaData,
     })
 
     const { setNodeRef: setDroppableNodeRef } = useDroppable({
         id: `tag-class-area-droppable-${id}`,
         data: {
-            type: 'TagClassArea',
-            tagAreaId: id,
-            tagClass,
-        } as Dnd.TagClassAreaData,
+            type: 'FilterArea',
+            filterAreaId: id,
+            keyword,
+        } as Dnd.FilterAreaData,
     })
 
     const style = transform
@@ -48,16 +56,16 @@ const TagClassAreaDraggable = ({ id, tagClassId }: TagClassAreaDraggableProps) =
           }
         : undefined
 
-    const onTagClassRemoveClicked = () => {
-        handleRemoveTagClass(tagClassId)
+    const onKeywordRemoveClicked = () => {
+        handleRemoveKeyword(keyword)
     }
 
-    const onTagSelected = (tag: Tag) => {
-        selectTagFromArea(tag, id)
+    const onTagSelected = (tag: TagType) => {
+        selectTagFromFilterArea(tag, id)
     }
 
-    const onTagUnselected = (tag: Tag) => {
-        deleteTagFromArea(id)
+    const onTagUnselected = (tag: TagType) => {
+        deleteTagFromFilterArea(id)
     }
 
     return (
@@ -68,10 +76,10 @@ const TagClassAreaDraggable = ({ id, tagClassId }: TagClassAreaDraggableProps) =
                         <p className="text-gray-500 text-14">Tag class</p>
                         <Image src="/icons/dots.svg" alt="" width={16} height={16} {...listeners} {...attributes} />
                     </div>
-                    <TagClassFilterDraggable
-                        tagClass={tagClass}
-                        tagAreaId={id}
-                        onRemoveClicked={onTagClassRemoveClicked}
+                    <KeywordFilterDraggable
+                        keyword={keyword}
+                        filterAreaId={id}
+                        onRemoveClicked={onKeywordRemoveClicked}
                     />
                 </div>
                 <div className="h-[1px] bg-gray-300" />
@@ -86,4 +94,4 @@ const TagClassAreaDraggable = ({ id, tagClassId }: TagClassAreaDraggableProps) =
     )
 }
 
-export default TagClassAreaDraggable
+export default FilterAreaDraggable

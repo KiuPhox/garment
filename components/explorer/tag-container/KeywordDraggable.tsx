@@ -1,16 +1,16 @@
 import { cn } from '@/lib/utils'
 import type { Dnd } from '@/types/dnd'
-import type { TagClassDraggableProps } from '@/types/explorer'
+import type { KeywordDraggableProps } from '@/types/explorer'
 import { useDraggable } from '@dnd-kit/core'
 import React from 'react'
 
-const TagClassDraggable = ({ tagClass }: TagClassDraggableProps) => {
+const KeywordDraggable = ({ keyword }: KeywordDraggableProps) => {
     const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
-        id: `tag-class-${tagClass.id}`,
+        id: `tag-class-${keyword.id}`,
         data: {
-            tagClass,
-            type: 'TagClassFromContainer',
-        } as Dnd.TagClassData,
+            keyword,
+            type: 'KeywordFromContainer',
+        } as Dnd.KeywordData,
     })
 
     const style = transform
@@ -21,17 +21,17 @@ const TagClassDraggable = ({ tagClass }: TagClassDraggableProps) => {
 
     return (
         <div className="flex flex-wrap" {...attributes} {...listeners}>
-            <div key={tagClass.id} className={cn('bg-[#404451] px-3 py-2 rounded-md', { 'opacity-0': isDragging })}>
-                {tagClass.name}
+            <div key={keyword.id} className={cn('bg-[#404451] px-3 py-2 rounded-md', { 'opacity-0': isDragging })}>
+                {keyword.name}
             </div>
 
             <div ref={setNodeRef} className="flex flex-wrap absolute" style={style}>
                 <div className={cn('bg-[#404451] px-3 py-2 rounded-md', { 'opacity-0': !isDragging })}>
-                    {tagClass.name}
+                    {keyword.name}
                 </div>
             </div>
         </div>
     )
 }
 
-export default TagClassDraggable
+export default KeywordDraggable

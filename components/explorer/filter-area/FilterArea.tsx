@@ -1,29 +1,13 @@
-import React, { useContext } from 'react'
-import TagsContext from '@/contexts/TagsContext'
-import FileArea from '../file-area/FileArea'
-import TagClassArea from './TagClassArea'
+import React from 'react'
+import FilterAreaDraggable from './FilterAreaDraggable'
+import FilterAreaDroppable from './FilterAreaDroppable'
+import type { FilterAreaProps } from '@/types/explorer'
 
-const FilterArea = () => {
-    const { tagClassAreas } = useContext(TagsContext)
-
-    const notEmptyTagAreas = tagClassAreas.filter((tagArea) => tagArea !== undefined)
+const FilterArea = ({ keyword, id }: FilterAreaProps) => {
     return (
-        <section className="flex flex-col gap-2 h-full">
-            <h2 className="text-gray-600 font-medium">Filter area</h2>
-            <div className="h-full flex flex-row gap-5">
-                {notEmptyTagAreas.map((tagArea, index) => {
-                    return <TagClassArea key={index} id={index} tagClassId={tagArea.tagClassId} />
-                })}
-                {notEmptyTagAreas.length < 3 && (
-                    <TagClassArea
-                        id={notEmptyTagAreas.length}
-                        tagClassId={tagClassAreas[notEmptyTagAreas.length]?.tagClassId}
-                    />
-                )}
-
-                <FileArea />
-            </div>
-        </section>
+        <div className="flex-1 max-w-72">
+            {keyword ? <FilterAreaDraggable id={id} keyword={keyword} /> : <FilterAreaDroppable id={id} />}
+        </div>
     )
 }
 

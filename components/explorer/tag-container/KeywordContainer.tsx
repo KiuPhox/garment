@@ -1,21 +1,19 @@
-'use client'
-
 import { useContext, useState } from 'react'
 import Image from 'next/image'
-import TagClassDraggable from './TagClassDraggable'
+import KeywordDraggable from './KeywordDraggable'
 import { useDroppable } from '@dnd-kit/core'
 import type { Dnd } from '@/types/dnd'
-import TagsContext from '@/contexts/TagsContext'
+import ExplorerContext from '@/contexts/ExplorerContext'
 import { cn } from '@/lib/utils'
 
-const TagClassContainer = () => {
+const KeywordContainer = () => {
     const [expanded, setExpanded] = useState(false)
-    const { tagClasses } = useContext(TagsContext)
+    const { visibleKeywords } = useContext(ExplorerContext)
 
     const { setNodeRef } = useDroppable({
-        id: 'tag-class-container-droppable',
+        id: 'keyword-container-droppable',
         data: {
-            type: 'TagClassContainer',
+            type: 'KeywordContainer',
         } as Dnd.DragEndData,
     })
 
@@ -43,8 +41,8 @@ const TagClassContainer = () => {
                     { 'max-h-[120px]': !expanded },
                 )}>
                 <div className="flex flex-wrap gap-2 m-2">
-                    {tagClasses.map((tagClass) => (
-                        <TagClassDraggable key={tagClass.id} tagClass={tagClass} />
+                    {visibleKeywords.map((keyword) => (
+                        <KeywordDraggable key={keyword.id} keyword={keyword} />
                     ))}
                 </div>
             </div>
@@ -52,4 +50,4 @@ const TagClassContainer = () => {
     )
 }
 
-export default TagClassContainer
+export default KeywordContainer

@@ -1,21 +1,30 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import FileAreaDroppable from './FileAreaDroppable'
-import TagsContext from '@/contexts/TagsContext'
-import { getAllFilesByTags } from '@/lib/explorer'
+import ExplorerContext from '@/contexts/ExplorerContext'
 import FileAreaResult from './FileAreaResult'
+import { getFilesWithTags } from '@/lib/actions/file.actions'
+import type { ExplorerFileType } from '@/lib/models/file.model'
 
 const FileArea = () => {
-    const { tagClassAreas } = useContext(TagsContext)
-    const files = useMemo(() => {
-        const tagIds = []
-        for (const tagClassArea of tagClassAreas) {
-            if (tagClassArea && tagClassArea.tagId !== undefined) {
-                tagIds.push(tagClassArea.tagId)
+    const { filterAreas } = useContext(ExplorerContext)
+    const [files, setFiles] = useState<ExplorerFileType[]>([])
+
+    useEffect(() => {
+        const fetchFiles = async () => {
+            const tags: string[] = []
+
+            for (const filterArea of filterAreas) {
+                if (filterArea && filterArea.tagId !== undefined) {
+                    tags.push(filterArea.tagId)
+                }
             }
+
+            const fileResults = await getFilesWithTags(tags)
+            setFiles(fileResults)
         }
 
-        return getAllFilesByTags(tagIds)
-    }, [tagClassAreas])
+        fetchFiles()
+    }, [filterAreas])
 
     return (
         <div className="bg-[#353a46] rounded-2xl flex-1">

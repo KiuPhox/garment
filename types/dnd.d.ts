@@ -1,11 +1,11 @@
-import type { TagClass } from './explorer'
+import type { KeywordSchema, KeywordType } from '@/lib/models/keyword.model'
 
 namespace Dnd {
     const DndTypes = {
-        TagClassContainer: 'tag-class-container',
-        TagClassFromContainer: 'tag-class-from-container',
-        TagClassFromFilter: 'tag-class-from-filter',
-        TagClassArea: 'tag-class-area',
+        KeywordContainer: 'keyword-container',
+        KeywordFromContainer: 'keyword-from-container',
+        KeywordFromFilter: 'keyword-from-filter',
+        FilterArea: 'filter-area',
     }
     type DndType = keyof typeof DndTypes
 
@@ -13,16 +13,16 @@ namespace Dnd {
         type: DndType
     }
 
-    type TagClassData = {
-        tagClass: TagClass
+    type KeywordData = {
+        keyword: KeywordType
     } & DragEndData
 
-    type TagClassFilterData = {
-        tagAreaId: number
-    } & TagClassData
+    type KeywordFromFilterData = {
+        filterAreaId: number
+    } & KeywordData
 
-    type TagClassAreaData = {
-        tagAreaId: number
-        tagClass?: TagClass
+    type FilterAreaData = {
+        filterAreaId: number
+        keyword?: KeywordType
     } & DragEndData
 }

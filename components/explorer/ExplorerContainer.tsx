@@ -1,12 +1,12 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
 import React, { useContext } from 'react'
-import TagClassContainer from './tag-container/TagClassContainer'
-import { TagsDispatchContext } from '@/contexts/TagsContext'
+import KeywordContainer from './tag-container/KeywordContainer'
+import { ExplorerDispatchContext } from '@/contexts/ExplorerContext'
 import type { Dnd } from '@/types/dnd'
-import FilterArea from './filter-area/FilterArea'
+import FilterAreaContainer from './filter-area/FilterAreaContainer'
 
 const ExplorerContainer = () => {
-    const { handleDragEnd } = useContext(TagsDispatchContext)
+    const { handleDragEnd } = useContext(ExplorerDispatchContext)
 
     const onDragEnd = (e: DragEndEvent) => {
         if (!e.over) return
@@ -19,8 +19,8 @@ const ExplorerContainer = () => {
 
     return (
         <DndContext onDragEnd={onDragEnd} autoScroll={false}>
-            <TagClassContainer />
-            <FilterArea />
+            <KeywordContainer />
+            <FilterAreaContainer />
         </DndContext>
     )
 }
