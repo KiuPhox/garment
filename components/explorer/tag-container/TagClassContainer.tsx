@@ -6,9 +6,10 @@ import TagClassDraggable from './TagClassDraggable'
 import { useDroppable } from '@dnd-kit/core'
 import type { Dnd } from '@/types/dnd'
 import TagsContext from '@/contexts/TagsContext'
+import { cn } from '@/lib/utils'
 
 const TagClassContainer = () => {
-    const [_expanded, setExpanded] = useState(false)
+    const [expanded, setExpanded] = useState(false)
     const { tagClasses } = useContext(TagsContext)
 
     const { setNodeRef } = useDroppable({
@@ -35,7 +36,12 @@ const TagClassContainer = () => {
                     onClick={handleExpandClick}
                 />
             </div>
-            <div className="bg-[#353a46] w-full h-full rounded-md transition-all">
+            <div
+                className={cn(
+                    'bg-[#353a46] w-full rounded-md transition-all overflow-hidden h-full',
+                    { 'max-h-[500px]': expanded },
+                    { 'max-h-[120px]': !expanded },
+                )}>
                 <div className="flex flex-wrap gap-2 m-2">
                     {tagClasses.map((tagClass) => (
                         <TagClassDraggable key={tagClass.id} tagClass={tagClass} />
