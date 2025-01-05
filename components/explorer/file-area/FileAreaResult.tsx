@@ -1,6 +1,6 @@
 import type { FileAreaResultProps } from '@/types/explorer'
 import React from 'react'
-import FileContainer from './FileContainer'
+import FileCard from './FileCard'
 
 const FileAreaResult = ({ files }: FileAreaResultProps) => {
     return (
@@ -9,7 +9,7 @@ const FileAreaResult = ({ files }: FileAreaResultProps) => {
                 <div className="text-gray-500 text-14">File(s)</div>
                 <div className="flex flex-col gap-2">
                     {files.map((file) => (
-                        <FileContainer key={file.id} file={file} />
+                        <FileCard key={file.id} file={file} />
                     ))}
                 </div>
             </div>

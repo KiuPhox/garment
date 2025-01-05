@@ -1,4 +1,6 @@
+import { getFilesWithTags } from '@/lib/actions/file.actions'
 import { getAllKeywords } from '@/lib/actions/keyword.actions'
+import type { ExplorerFileType } from '@/lib/models/file.model'
 import type { KeywordType } from '@/lib/models/keyword.model'
 import type { TagType } from '@/lib/models/tag.model'
 import type { Dnd } from '@/types/dnd'
@@ -8,8 +10,10 @@ import { createContext, useEffect, useState } from 'react'
 type FilterArea = Omit<FilterAreaProps, 'id'> | undefined
 
 const ExplorerContext = createContext({
+    keywords: [] as KeywordType[],
     visibleKeywords: [] as KeywordType[],
     filterAreas: [] as FilterArea[],
+    files: [] as ExplorerFileType[],
 })
 
 const ExplorerDispatchContext = createContext({
@@ -17,12 +21,14 @@ const ExplorerDispatchContext = createContext({
     selectTagFromFilterArea: (tag: TagType, filterAreaId: number) => {},
     deleteTagFromFilterArea: (filterAreaId: number) => {},
     deleteKeywordFromFilterArea: (keyword: KeywordType) => {},
+    fetchFiles: async () => {},
 })
 
 export const ExplorerProvider = ({ children }: any) => {
     const [keywords, setKeywords] = useState<KeywordType[]>([])
     const [visibleKeywords, setVisibleKeywords] = useState<KeywordType[]>([])
     const [filterAreas, setFilterAreas] = useState<FilterArea[]>([undefined, undefined, undefined])
+    const [files, setFiles] = useState<ExplorerFileType[]>([])
 
     useEffect(() => {
         const fetchKeywords = async () => {
@@ -32,6 +38,10 @@ export const ExplorerProvider = ({ children }: any) => {
         }
         fetchKeywords()
     }, [])
+
+    useEffect(() => {
+        fetchFiles()
+    }, [filterAreas])
 
     const handleDragEnd = (activeData: Dnd.DragEndData, overData: Dnd.DragEndData) => {
         if (activeData.type === 'KeywordFromContainer' && overData.type === 'FilterArea') {
@@ -135,11 +145,26 @@ export const ExplorerProvider = ({ children }: any) => {
         setVisibleKeywords(visibleKeywords)
     }
 
+    const fetchFiles = async () => {
+        const tags: string[] = []
+
+        for (const filterArea of filterAreas) {
+            if (filterArea && filterArea.tagId !== undefined) {
+                tags.push(filterArea.tagId)
+            }
+        }
+
+        const fileResults = await getFilesWithTags(tags)
+        setFiles(fileResults)
+    }
+
     return (
         <ExplorerContext.Provider
             value={{
                 filterAreas,
+                keywords,
                 visibleKeywords,
+                files,
             }}>
             <ExplorerDispatchContext.Provider
                 value={{
@@ -147,6 +172,7 @@ export const ExplorerProvider = ({ children }: any) => {
                     selectTagFromFilterArea,
                     deleteTagFromFilterArea,
                     deleteKeywordFromFilterArea,
+                    fetchFiles,
                 }}>
                 {children}
             </ExplorerDispatchContext.Provider>

@@ -13,6 +13,7 @@ const FilterAreaDraggable = ({ id, keyword }: FilterAreaDraggableProps) => {
     const [tags, setTags] = useState<TagType[]>([])
 
     useEffect(() => {
+        setTags([])
         const fetchTags = async () => {
             const tags = await getTagsByKeyword(keyword)
             setTags(tags)

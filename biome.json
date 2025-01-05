@@ -74,7 +74,8 @@
                 "noDelete": "info"
             },
             "correctness": {
-                "noUnreachable": "info"
+                "noUnreachable": "info",
+                "useExhaustiveDependencies": "info"
             },
             "a11y": {
                 "useKeyWithClickEvents": "off"

@@ -21,3 +21,12 @@ export const getFilesWithTags = async (tags: string[]): Promise<ExplorerFileType
         return []
     }
 }
+
+export const updateFile = async (id: string, name: string): Promise<void> => {
+    try {
+        await connectToDB()
+        await ExplorerFile.updateOne({ _id: id }, { name })
+    } catch (error) {
+        return
+    }
+}

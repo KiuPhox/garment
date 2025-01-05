@@ -1,14 +1,15 @@
 import type { ExplorerFileType } from '@/lib/models/file.model'
 import type { KeywordType } from '@/lib/models/keyword.model'
+import type { TagType } from '@/lib/models/tag.model'
 
-export interface ExplorerFile {
-    id: number
-    name: string
-    tags: number[]
-    type: 'jpg' | 'png' | 'pdf'
-    owner: string
-    size: number
+export interface KeywordDraggableProps {
+    keyword: KeywordType
 }
+
+export type KeywordFilterDraggableProps = {
+    filterAreaId: number
+    onRemoveClicked: () => void
+} & KeywordDraggableProps
 
 export interface FilterAreaProps {
     id: number
@@ -22,23 +23,14 @@ export interface FilterAreaDraggableProps {
     tagId?: string
 }
 
-export interface KeywordDraggableProps {
-    keyword: KeywordType
-}
-
-export type KeywordFilterDraggableProps = {
-    filterAreaId: number
-    onRemoveClicked: () => void
-} & KeywordDraggableProps
-
 export interface FilterAreaDroppableProps {
     id: number
 }
 
 export interface TagFilterProps {
-    tag: Tag
-    onSelected: (tag: Tag) => void
-    onUnselected: (tag: Tag) => void
+    tag: TagType
+    onSelected: (tag: TagType) => void
+    onUnselected: (tag: TagType) => void
 }
 
 export interface FileAreaResultProps {
@@ -46,5 +38,11 @@ export interface FileAreaResultProps {
 }
 
 export interface FileContainerProps {
+    file: ExplorerFileType
+}
+
+export interface FilePropertiesProps {
+    isOpen: boolean
+    closeModal: () => void
     file: ExplorerFileType
 }
