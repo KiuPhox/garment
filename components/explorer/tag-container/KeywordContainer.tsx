@@ -29,14 +29,14 @@ const KeywordContainer = () => {
                     src="/icons/expand.svg"
                     width={16}
                     height={16}
-                    alt="Add tag class"
+                    alt="Add keyword"
                     className="cursor-pointer"
                     onClick={handleExpandClick}
                 />
             </div>
             <div
                 className={cn(
-                    'bg-[#353a46] w-full rounded-md transition-all overflow-hidden h-full',
+                    'bg-[#353a46] w-full rounded-md transition-all overflow-hidden h-full min-h-[120px]',
                     { 'max-h-[500px]': expanded },
                     { 'max-h-[120px]': !expanded },
                 )}>

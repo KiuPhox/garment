@@ -20,7 +20,7 @@ export const getAllTags = async (): Promise<TagType[]> => {
 export const getTagsByKeyword = async (keyword: KeywordType): Promise<TagType[]> => {
     try {
         await connectToDB()
-        const tagQuery = Tag.find({ keywords: keyword.id })
+        const tagQuery = Tag.find({ keywordId: keyword.id })
 
         const tags = (await tagQuery.exec()).map((tag) => {
             return {
@@ -29,6 +29,8 @@ export const getTagsByKeyword = async (keyword: KeywordType): Promise<TagType[]>
                 keywordId: tag.toJSON().keywordId.toString(),
             } as TagType
         })
+
+        console.log(keyword, tags)
 
         return tags
     } catch (error) {
