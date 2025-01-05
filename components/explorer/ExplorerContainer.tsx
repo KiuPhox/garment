@@ -1,6 +1,6 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
 import React, { useContext } from 'react'
-import KeywordContainer from './tag-container/KeywordContainer'
+import KeywordContainer from './keyword-container/KeywordContainer'
 import { ExplorerDispatchContext } from '@/contexts/ExplorerContext'
 import type { Dnd } from '@/types/dnd'
 import FilterAreaContainer from './filter-area/FilterAreaContainer'
