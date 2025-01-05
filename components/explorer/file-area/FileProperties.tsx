@@ -42,10 +42,16 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
         fetchFiles()
     }
 
+    const tryCloseModal = () => {
+        if (isUpdating) return
+
+        closeModal()
+    }
+
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                <Dialog as="div" className="relative z-10" onClose={tryCloseModal}>
                     <TransitionChild
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -75,7 +81,7 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
                                             width={20}
                                             height={20}
                                             className="object-contain cursor-pointer"
-                                            onClick={closeModal}
+                                            onClick={tryCloseModal}
                                         />
                                     </div>
                                     <div className="h-[1px] bg-gray-300 flex mx-4" />
