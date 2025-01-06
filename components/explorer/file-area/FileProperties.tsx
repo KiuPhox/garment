@@ -18,12 +18,24 @@ import {
     TransitionChild,
 } from '@headlessui/react'
 import Image from 'next/image'
-import React, { Fragment, useContext, useState, type FormEvent } from 'react'
+import React, { Fragment, useContext, useEffect, useState, type FormEvent, type KeyboardEvent } from 'react'
+import TagsInput from './TagsInput'
+import { getAllTags } from '@/lib/actions/tag.actions'
+import type { TagType } from '@/lib/models/tag.model'
 
 const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
     const { keywords } = useContext(ExplorerContext)
     const { fetchFiles } = useContext(ExplorerDispatchContext)
+
+    const [allTags, setAllTags] = useState<TagType[]>([])
     const [isUpdating, setIsUpdating] = useState(false)
+
+    useEffect(() => {
+        const fetchAllTags = async () => {
+            setAllTags(await getAllTags())
+        }
+        if (isOpen) fetchAllTags()
+    }, [isOpen])
 
     const saveFileProperties = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -33,6 +45,7 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
         const formData = new FormData(e.currentTarget)
         const name = formData.get('name') as string
         const keyword = formData.get('keyword') as string
+        const tags = formData.get('tags') as string
 
         setIsUpdating(true)
         await updateFile(file.id, name)
@@ -40,6 +53,12 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
 
         closeModal()
         fetchFiles()
+    }
+
+    const preventEnterSubmit = (e: KeyboardEvent<HTMLFormElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+        }
     }
 
     const tryCloseModal = () => {
@@ -86,7 +105,10 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
                                     </div>
                                     <div className="h-[1px] bg-gray-300 flex mx-4" />
                                     <div className="p-4 mt-5 flex w-full">
-                                        <form className="flex flex-col gap-6 w-full" onSubmit={saveFileProperties}>
+                                        <form
+                                            className="flex flex-col gap-6 w-full"
+                                            onSubmit={saveFileProperties}
+                                            onKeyDown={preventEnterSubmit}>
                                             <Field className="flex flex-col gap-2 items-start">
                                                 <Label htmlFor="name">Name</Label>
                                                 <Input
@@ -131,6 +153,17 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
                                                         ))}
                                                     </ComboboxOptions>
                                                 </Combobox>
+                                            </Field>
+                                            <Field className="flex flex-col gap-2 items-start">
+                                                <Label htmlFor="tags">Tags</Label>
+                                                <TagsInput
+                                                    name="tags"
+                                                    defaultValue={file.tags.map((tagId) => {
+                                                        const tag = allTags.find((tag) => tag.id === tagId)
+                                                        return tag?.name ?? ''
+                                                    })}
+                                                    placeholder="Insert and press enter to add new tag"
+                                                />
                                             </Field>
                                             <div className="flex justify-end mt-5">
                                                 <Button
