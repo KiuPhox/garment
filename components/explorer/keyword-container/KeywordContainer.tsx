@@ -1,3 +1,5 @@
+'use client'
+
 import { useContext, useState } from 'react'
 import Image from 'next/image'
 import KeywordDraggable from './KeywordDraggable'
@@ -5,10 +7,19 @@ import { useDroppable } from '@dnd-kit/core'
 import type { Dnd } from '@/types/dnd'
 import ExplorerContext from '@/contexts/ExplorerContext'
 import { cn } from '@/lib/utils'
+import { Skeleton } from '@mui/material'
+
+const seededRandom = (seed: number) => {
+    let value = seed % 2147483647
+    return () => {
+        value = (value * 16807) % 2147483647
+        return (value - 1) / 2147483646
+    }
+}
 
 const KeywordContainer = () => {
     const [expanded, setExpanded] = useState(false)
-    const { visibleKeywords } = useContext(ExplorerContext)
+    const { visibleKeywords, keywords } = useContext(ExplorerContext)
 
     const { setNodeRef } = useDroppable({
         id: 'keyword-container-droppable',
@@ -16,6 +27,12 @@ const KeywordContainer = () => {
             type: 'KeywordContainer',
         } as Dnd.DragEndData,
     })
+
+    const random = seededRandom(1208461)
+
+    const getRandomWidth = () => {
+        return Math.floor(random() * 100) + 100
+    }
 
     const handleExpandClick = () => {
         setExpanded((prev) => !prev)
@@ -44,6 +61,16 @@ const KeywordContainer = () => {
                     {visibleKeywords.map((keyword) => (
                         <KeywordDraggable key={keyword.id} keyword={keyword} />
                     ))}
+                    {keywords.length === 0 &&
+                        Array.from({ length: 28 }).map((_, index) => (
+                            <Skeleton
+                                key={index}
+                                variant="rectangular"
+                                width={`${getRandomWidth()}px`}
+                                height="40px"
+                                animation="wave"
+                            />
+                        ))}
                 </div>
             </div>
         </section>

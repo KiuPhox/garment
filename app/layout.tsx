@@ -3,7 +3,7 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 
 const roboto = Roboto({
-    weight: ['400', '500', '700'], // Specify the weights you want to use
+    weight: ['300', '400', '500', '700'], // Specify the weights you want to use
     subsets: ['latin'], // Specify the subsets you need (e.g., 'latin')
 })
 export const metadata: Metadata = {

@@ -5,7 +5,7 @@ import type { KeywordType } from '@/lib/models/keyword.model'
 import type { TagType } from '@/lib/models/tag.model'
 import type { Dnd } from '@/types/dnd'
 import type { FilterAreaProps } from '@/types/explorer'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useMemo, useState } from 'react'
 
 type FilterArea = Omit<FilterAreaProps, 'id'> | undefined
 
