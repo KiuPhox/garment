@@ -23,6 +23,8 @@ import { getAllTags } from '@/lib/actions/tag.actions'
 import type { TagType } from '@/lib/models/tag.model'
 import { LoadingButton } from '@mui/lab'
 import { Save } from '@mui/icons-material'
+import { Divider, IconButton } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'
 
 const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
     const { keywords } = useContext(ExplorerContext)
@@ -106,16 +108,16 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
                                 <DialogPanel className="w-full max-w-3xl max-h[90vh] overflow-y-auto transform rounded-2xl bg-[#23272f] shadow-xsl transition-all flex flex-col">
                                     <div className="flex justify-between items-center px-4 py-7">
                                         <h1 className="text-24 font-medium">File Properties</h1>
-                                        <Image
-                                            src="./icons/cross.svg"
-                                            alt="Close"
-                                            width={20}
-                                            height={20}
-                                            className="object-contain cursor-pointer"
-                                            onClick={tryCloseModal}
-                                        />
+                                        <IconButton
+                                            disabled={isUpdating}
+                                            onClick={() => {
+                                                tryCloseModal()
+                                            }}>
+                                            <CloseIcon />
+                                        </IconButton>
                                     </div>
-                                    <div className="h-[1px] bg-gray-300 flex mx-4" />
+
+                                    <Divider variant="middle" component="div" />
                                     <div className="p-4 mt-5 flex w-full">
                                         <form
                                             className="flex flex-col gap-6 w-full"

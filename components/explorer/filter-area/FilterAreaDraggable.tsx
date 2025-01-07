@@ -1,5 +1,4 @@
 import { useDraggable, useDroppable } from '@dnd-kit/core'
-import Image from 'next/image'
 import React, { useContext, useEffect, useState } from 'react'
 import KeywordFilterDraggable from './KeywordFilterDraggable'
 import type { FilterAreaDraggableProps } from '@/types/explorer'
@@ -8,6 +7,8 @@ import { ExplorerDispatchContext } from '@/contexts/ExplorerContext'
 import TagFilter from './TagFilter'
 import type { TagType } from '@/lib/models/tag.model'
 import { getTagsByKeyword } from '@/lib/actions/tag.actions'
+import { DragIndicator } from '@mui/icons-material'
+import { Divider } from '@mui/material'
 
 const FilterAreaDraggable = ({ id, keyword }: FilterAreaDraggableProps) => {
     const [tags, setTags] = useState<TagType[]>([])
@@ -75,7 +76,9 @@ const FilterAreaDraggable = ({ id, keyword }: FilterAreaDraggableProps) => {
                 <div className="flex flex-col">
                     <div className="flex flex-row justify-between items-center mb-5">
                         <p className="text-gray-500 text-14">Tag class</p>
-                        <Image src="/icons/dots.svg" alt="" width={16} height={16} {...listeners} {...attributes} />
+                        <div {...listeners} {...attributes}>
+                            <DragIndicator />
+                        </div>
                     </div>
                     <KeywordFilterDraggable
                         keyword={keyword}
@@ -83,7 +86,7 @@ const FilterAreaDraggable = ({ id, keyword }: FilterAreaDraggableProps) => {
                         onRemoveClicked={onKeywordRemoveClicked}
                     />
                 </div>
-                <div className="h-[1px] bg-gray-300" />
+                <Divider variant="middle" component="div" />
                 <div className="flex flex-col gap-2">
                     <p className="text-gray-500 text-14 mb-3">Tag(s)</p>
                     {tags.map((tag) => (

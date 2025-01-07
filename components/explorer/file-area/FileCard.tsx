@@ -2,6 +2,9 @@ import type { FileContainerProps as FileCardProps } from '@/types/explorer'
 import Image from 'next/image'
 import { useState } from 'react'
 import FileProperties from './FileProperties'
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import { IconButton } from '@mui/material'
 
 const FileCard = ({ file }: FileCardProps) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -40,23 +43,14 @@ const FileCard = ({ file }: FileCardProps) => {
                         </div>
                     </div>
 
-                    <div className="flex gap-4">
-                        <Image
-                            src="/icons/download.svg"
-                            width={20}
-                            height={20}
-                            alt="download"
-                            className="cursor-pointer"
-                        />
+                    <div className="flex justify-between items-center gap-1">
+                        <IconButton onClick={() => setIsOpen(!isOpen)}>
+                            <FileDownloadOutlinedIcon />
+                        </IconButton>
 
-                        <Image
-                            src="/icons/pencil.svg"
-                            width={20}
-                            height={20}
-                            alt="edit"
-                            className="cursor-pointer"
-                            onClick={() => setIsOpen(!isOpen)}
-                        />
+                        <IconButton onClick={() => setIsOpen(!isOpen)}>
+                            <EditOutlinedIcon />
+                        </IconButton>
                     </div>
                 </div>
             </div>
