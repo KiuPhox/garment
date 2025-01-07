@@ -1,13 +1,13 @@
 'use client'
 
 import { useContext, useState } from 'react'
-import Image from 'next/image'
 import KeywordDraggable from './KeywordDraggable'
 import { useDroppable } from '@dnd-kit/core'
 import type { Dnd } from '@/types/dnd'
 import ExplorerContext from '@/contexts/ExplorerContext'
 import { cn } from '@/lib/utils'
-import { Skeleton } from '@mui/material'
+import { IconButton, Skeleton } from '@mui/material'
+import { UnfoldLess, UnfoldMore } from '@mui/icons-material'
 
 const seededRandom = (seed: number) => {
     let value = seed % 2147483647
@@ -40,16 +40,11 @@ const KeywordContainer = () => {
 
     return (
         <section ref={setNodeRef} className="flex flex-col gap-2">
-            <div className="flex gap-2">
+            <div className="flex items-center gap-1">
                 <h2 className="text-gray-600 font-medium">Tag class</h2>
-                <Image
-                    src="/icons/expand.svg"
-                    width={16}
-                    height={16}
-                    alt="Add keyword"
-                    className="cursor-pointer"
-                    onClick={handleExpandClick}
-                />
+                <IconButton size="small" onClick={handleExpandClick}>
+                    {expanded ? <UnfoldLess /> : <UnfoldMore />}
+                </IconButton>
             </div>
             <div
                 className={cn(

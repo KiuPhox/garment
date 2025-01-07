@@ -3,7 +3,6 @@ import { updateFile } from '@/lib/actions/file.actions'
 import type { KeywordType } from '@/lib/models/keyword.model'
 import type { FilePropertiesProps } from '@/types/explorer'
 import {
-    Button,
     Combobox,
     ComboboxButton,
     ComboboxInput,
@@ -22,6 +21,8 @@ import React, { Fragment, useContext, useEffect, useState, type FormEvent, type 
 import TagsInput from './TagsInput'
 import { getAllTags } from '@/lib/actions/tag.actions'
 import type { TagType } from '@/lib/models/tag.model'
+import { LoadingButton } from '@mui/lab'
+import { Save } from '@mui/icons-material'
 
 const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
     const { keywords } = useContext(ExplorerContext)
@@ -30,7 +31,12 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
     const [allTags, setAllTags] = useState<TagType[]>([])
     const [isUpdating, setIsUpdating] = useState(false)
 
+    const [disabled, setDisabled] = useState(true)
+
     useEffect(() => {
+        setIsUpdating(false)
+        setDisabled(true)
+
         const fetchAllTags = async () => {
             setAllTags(await getAllTags())
         }
@@ -49,10 +55,10 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
 
         setIsUpdating(true)
         await updateFile(file.id, name)
+        await fetchFiles()
         setIsUpdating(false)
 
         closeModal()
-        fetchFiles()
     }
 
     const preventEnterSubmit = (e: KeyboardEvent<HTMLFormElement>) => {
@@ -65,6 +71,12 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
         if (isUpdating) return
 
         closeModal()
+    }
+
+    const onNameChange = (e: FormEvent<HTMLInputElement>) => {
+        const name = e.currentTarget.value
+        const newDisabled = name === file.name
+        if (newDisabled !== disabled) setDisabled(newDisabled)
     }
 
     return (
@@ -117,6 +129,7 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
                                                     className="bg-[#343a46] w-full rounded-md text-16 p-3 data-[focus]:outline-none"
                                                     placeholder="File name"
                                                     defaultValue={file.name}
+                                                    onChange={(e) => onNameChange(e)}
                                                 />
                                             </Field>
                                             <Field className="flex flex-col gap-2 items-start">
@@ -166,11 +179,15 @@ const FileProperties = ({ isOpen, closeModal, file }: FilePropertiesProps) => {
                                                 />
                                             </Field>
                                             <div className="flex justify-end mt-5">
-                                                <Button
+                                                <LoadingButton
+                                                    variant="contained"
                                                     type="submit"
-                                                    className="bg-[#283542] py-3 px-6 rounded-md text-16 w-fit">
+                                                    startIcon={<Save />}
+                                                    loadingPosition="start"
+                                                    loading={isUpdating}
+                                                    disabled={disabled}>
                                                     Save
-                                                </Button>
+                                                </LoadingButton>
                                             </div>
                                         </form>
                                     </div>
