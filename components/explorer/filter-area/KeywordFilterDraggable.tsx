@@ -30,7 +30,7 @@ const KeywordFilterDraggable = ({ keyword, filterAreaId, onRemoveClicked }: Keyw
     return (
         <Card ref={setNodeRef} style={style}>
             <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', pr: 1 }}>
-                <CardContent {...attributes} {...listeners}>
+                <CardContent {...attributes} {...listeners} sx={{ display: 'flex', flex: 1 }}>
                     <Typography> {keywordName}</Typography>
                 </CardContent>
                 <IconButton onClick={onRemoveClicked} size="small">
