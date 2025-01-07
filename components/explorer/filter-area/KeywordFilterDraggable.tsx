@@ -2,7 +2,7 @@ import type { Dnd } from '@/types/dnd'
 import type { KeywordFilterDraggableProps } from '@/types/explorer'
 import Utils from '@/utils'
 import { useDraggable } from '@dnd-kit/core'
-import { IconButton } from '@mui/material'
+import { Card, CardActionArea, CardContent, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import CloseIcon from '@mui/icons-material/Close'
 
@@ -28,17 +28,16 @@ const KeywordFilterDraggable = ({ keyword, filterAreaId, onRemoveClicked }: Keyw
     const keywordName = keyword.name.length > 28 ? S.getShortName(keyword.name, 28).concat('...') : keyword.name
 
     return (
-        <div
-            ref={setNodeRef}
-            style={style}
-            className="flex items-center justify-between bg-[#404451] px-3 py-2 rounded-md ">
-            <div {...attributes} {...listeners} className="w-full">
-                {keywordName}
-            </div>
-            <IconButton onClick={onRemoveClicked} size="small">
-                <CloseIcon fontSize="small" />
-            </IconButton>
-        </div>
+        <Card ref={setNodeRef} style={style}>
+            <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', pr: 1 }}>
+                <CardContent {...attributes} {...listeners}>
+                    <Typography> {keywordName}</Typography>
+                </CardContent>
+                <IconButton onClick={onRemoveClicked} size="small">
+                    <CloseIcon fontSize="small" />
+                </IconButton>
+            </CardActionArea>
+        </Card>
     )
 }
 
