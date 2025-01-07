@@ -4,7 +4,7 @@ import { useState } from 'react'
 import FileProperties from './FileProperties'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import { IconButton } from '@mui/material'
+import { Card, CardActionArea, IconButton } from '@mui/material'
 
 const FileCard = ({ file }: FileCardProps) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -19,7 +19,7 @@ const FileCard = ({ file }: FileCardProps) => {
 
     return (
         <>
-            <div className="flex bg-[#414451] rounded-md gap-2 pr-4">
+            <Card className="flex bg-[#414451] rounded-md gap-2 pr-4">
                 <div className="w-2 rounded-l-md" style={{ backgroundColor: color }} />
                 <div className="flex justify-between flex-1 py-2">
                     <div className="flex gap-4">
@@ -53,7 +53,7 @@ const FileCard = ({ file }: FileCardProps) => {
                         </IconButton>
                     </div>
                 </div>
-            </div>
+            </Card>
             <FileProperties isOpen={isOpen} file={file} closeModal={() => setIsOpen(false)} />
         </>
     )

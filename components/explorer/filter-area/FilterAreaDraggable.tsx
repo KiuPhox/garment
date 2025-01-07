@@ -8,7 +8,7 @@ import TagFilter from './TagFilter'
 import type { TagType } from '@/lib/models/tag.model'
 import { getTagsByKeyword } from '@/lib/actions/tag.actions'
 import { DragIndicator } from '@mui/icons-material'
-import { Divider } from '@mui/material'
+import { Card, CardContent, Divider } from '@mui/material'
 
 const FilterAreaDraggable = ({ id, keyword }: FilterAreaDraggableProps) => {
     const [tags, setTags] = useState<TagType[]>([])
@@ -71,8 +71,8 @@ const FilterAreaDraggable = ({ id, keyword }: FilterAreaDraggableProps) => {
     }
 
     return (
-        <div ref={setDraggableNodeRef} className="flex h-full bg-[#353a46] rounded-lg" style={style}>
-            <div ref={setDroppableNodeRef} className="flex flex-1 flex-col mx-2 my-4 gap-3">
+        <Card ref={setDraggableNodeRef} className="flex h-full" style={style}>
+            <CardContent ref={setDroppableNodeRef} className="flex flex-1 flex-col gap-3">
                 <div className="flex flex-col">
                     <div className="flex flex-row justify-between items-center mb-5">
                         <p className="text-gray-500 text-14">Tag class</p>
@@ -93,8 +93,8 @@ const FilterAreaDraggable = ({ id, keyword }: FilterAreaDraggableProps) => {
                         <TagFilter tag={tag} key={tag.id} onSelected={onTagSelected} onUnselected={onTagUnselected} />
                     ))}
                 </div>
-            </div>
-        </div>
+            </CardContent>
+        </Card>
     )
 }
 

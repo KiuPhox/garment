@@ -7,7 +7,7 @@ const FileArea = () => {
     const { files } = useContext(ExplorerContext)
 
     return (
-        <div className="bg-[#353a46] rounded-2xl flex-1">
+        <div className="bg-[#353a46] flex-1">
             {files.length === 0 ? <FileAreaDroppable /> : <FileAreaResult files={files} />}
         </div>
     )

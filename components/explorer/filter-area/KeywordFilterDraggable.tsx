@@ -28,15 +28,18 @@ const KeywordFilterDraggable = ({ keyword, filterAreaId, onRemoveClicked }: Keyw
     const keywordName = keyword.name.length > 28 ? S.getShortName(keyword.name, 28).concat('...') : keyword.name
 
     return (
-        <Card ref={setNodeRef} style={style}>
-            <CardActionArea sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', pr: 1 }}>
+        <Card ref={setNodeRef} style={style} sx={{ position: 'relative' }}>
+            <CardActionArea>
                 <CardContent {...attributes} {...listeners} sx={{ display: 'flex', flex: 1 }}>
-                    <Typography> {keywordName}</Typography>
+                    <Typography>{keywordName}</Typography>
                 </CardContent>
-                <IconButton onClick={onRemoveClicked} size="small">
-                    <CloseIcon fontSize="small" />
-                </IconButton>
             </CardActionArea>
+            <IconButton
+                sx={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }}
+                onClick={onRemoveClicked}
+                size="small">
+                <CloseIcon fontSize="small" />
+            </IconButton>
         </Card>
     )
 }

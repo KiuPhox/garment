@@ -2,6 +2,8 @@ import type { TagFilterProps } from '@/types/explorer'
 import React, { useContext } from 'react'
 import Utils from '@/utils'
 import ExplorerContext from '@/contexts/ExplorerContext'
+import { Card, CardActionArea, CardContent, Typography } from '@mui/material'
+import style from 'styled-jsx/style'
 
 const { String: S } = Utils
 
@@ -9,9 +11,6 @@ const TagFilter = ({ tag, onSelected: handleOnSelected, onUnselected: handleOnUn
     const { filterAreas } = useContext(ExplorerContext)
 
     const isSelected = filterAreas.find((filterArea) => filterArea?.tagId === tag.id) !== undefined
-
-    //? TODO: get files from tag
-    const files = []
 
     const handleOnClicked = () => {
         if (isSelected) {
@@ -22,23 +21,23 @@ const TagFilter = ({ tag, onSelected: handleOnSelected, onUnselected: handleOnUn
     }
 
     return (
-        <div
-            className={S.className(
-                { 'bg-[#404451]': !isSelected },
-                { 'bg-[#2b3541]': isSelected },
-                { 'text-[#67bdd5]': isSelected },
-                'px-3',
-                'py-2',
-                'rounded-md',
-                'cursor-pointer',
-                'flex',
-                'justify-between',
-                'items-center',
-            )}
-            onClick={handleOnClicked}>
-            <div>{tag.name.length > 28 ? S.getShortName(tag.name, 28).concat('...') : tag.name}</div>
-            <div className="text-12">({files.length})</div>
-        </div>
+        <Card>
+            <CardActionArea
+                onClick={handleOnClicked}
+                data-active={isSelected ? '' : undefined}
+                sx={{
+                    '&[data-active]': {
+                        backgroundColor: 'action.selected',
+                        '&:hover': {
+                            backgroundColor: 'action.selectedHover',
+                        },
+                    },
+                }}>
+                <CardContent sx={{ display: 'flex', flex: 1 }}>
+                    <Typography>{tag.name}</Typography>
+                </CardContent>
+            </CardActionArea>
+        </Card>
     )
 }
 
